@@ -3,14 +3,46 @@
   border:solid red 1px;
 }
 
+/* ===== Helpers ===== */
+
+.clickable {
+	cursor:pointer;
+}
+
+/* ===== UI ===== */
+
 button {
 	display:block;
 }
 
-.questionForm {
-	
-}
+/* ===== Question Box ===== */
 
 .questionBox {
-	border:dotted #ccc 1px;
+ 	.title {}
+ 	.submitTime {}
+ 	.answerBox {
+ 		.text {}
+ 	}
+ 	.submitter {}
+ 	.upvotes {
+ 		.number {}
+ 	}
+ 	.options {
+ 		.fa {}
+ 	}
+}
+
+.approved-true {
+	border:dotted green 1px;
+}
+
+.approved-false * {
+	color:#ccc;
+}
+
+
+/* ===== Question Form ===== */
+
+.questionForm {
+	
 }

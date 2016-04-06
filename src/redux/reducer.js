@@ -50,6 +50,28 @@ let reducer = function(state, action) {
 		        })
 		      })
 
+		//do more to update state here...
+		case constants.APPROVE_QUESTION: 
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q, index) => {
+		          return index === action.index ? 
+		            Object.assign({}, q, {
+		            	approvalStatus: constants.QUESTION_APPROVED
+		            }) : q
+		        })
+		      })
+
+		//do more to update state here...
+		case constants.REJECT_QUESTION: 
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q, index) => {
+		          return index === action.index ? 
+		            Object.assign({}, q, {
+		            	approvalStatus: constants.QUESTION_REJECTED
+		            }) : q
+		        })
+		      })
+
 		//stage two
 		case constants.EDIT_QUESTION: 
 			return state;

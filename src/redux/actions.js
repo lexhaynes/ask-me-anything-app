@@ -24,7 +24,7 @@ let actions = {
 			index: index
 		}
 	},
-	//stage two
+	//stage three
 	editQuestion: function(index) {
 		return {
 			type:constants.EDIT_QUESTION,
@@ -43,7 +43,21 @@ let actions = {
 			type: constants.DOWNVOTE_QUESTION,
 			index: index
 		}
-	}
+	},
+
+	approveQuestion: function(index) {
+		return {
+			type:constants.APPROVE_QUESTION,
+			index:index
+		}
+	},
+
+	rejectQuestion: function(index) {
+		return {
+			type:constants.REJECT_QUESTION,
+			index:index
+		}
+	},
 }
 
 

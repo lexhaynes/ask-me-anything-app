@@ -36,8 +36,14 @@ button {
 	border:dotted green 1px;
 }
 
-.approved-false * {
-	color:#ccc;
+.approved-false { 
+	.title,
+	.submitTime,
+	.submitter,
+	.upvotes,
+	.options {
+		color:#ccc;
+	}
 }
 
 
@@ -45,4 +51,13 @@ button {
 
 .questionForm {
 	
+}
+
+/* ===== /Admin ===== */
+
+.adminOptions {
+	button {
+		display:inline;
+		margin:1em 1em 0 0;
+	}
 }

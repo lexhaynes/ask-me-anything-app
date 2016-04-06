@@ -15,9 +15,8 @@ export default class Home extends React.Component {
     super(props);
     props.actions.displayQuestions();
   }
-
-  askQuestion() {
-    browserHistory.push('/ask');
+  adminLogin() {
+    browserHistory.push('/admin');
   }
 
 
@@ -41,7 +40,7 @@ export default class Home extends React.Component {
               <div className = {styles.number}>{q.upvotes}</div>
             </div>
             <div className = {styles.options}>
-                <i className = {classnames(styles.clickable, "fa fa-chevron-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, index)}></i>
+                <i className = {classnames(styles.clickable, "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, index)}></i>
                 {/*<i className="fa fa-pencil" onClick = {_this.props.actions.editQuestion.bind(_this, index)}></i>*/}
             </div>
           {/* comments coming soon */}
@@ -53,8 +52,7 @@ export default class Home extends React.Component {
 
     return (
       <div className={styles.content}>
-        <h1>AMA</h1>
-
+        <h1>{this.props.currentState.requestStatus}</h1>
         {questions}
 
         {/* <button className={styles.button} onClick={this.askQuestion}>Ask a Question</button> */}
@@ -62,6 +60,9 @@ export default class Home extends React.Component {
         
           <QuestionForm />
 
+          <hr />
+          
+          <button className = {styles.button} onClick = {this.adminLogin}>Admin Login</button>
 
       </div>
     );

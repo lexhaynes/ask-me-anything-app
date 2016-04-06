@@ -1,17 +1,19 @@
-//import constants from './constants'
+import constants from './constants'
 
 export default function() {
+	var now = new Date().toISOString();
 	return {
 		isLoading: true,
 		questions: [{
 				id: 0,
-				title: "question title",
-				submitTime: "dateTimeString", //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
+				approvalStatus: constants.QUESTION_PENDING,
+				title: "Ask me Anything",
+				submitTime: now , //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
 				answer: {
-					text: "answer to the question",
-					answerTime: "dateTimeString"
+					text: "",
+					answerTime: ""
 				},
-				submitter: "question submitter",
+				submitter: "You",
 				upvotes: 0,
 				comments: [{
 						id: 0,

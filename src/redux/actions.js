@@ -24,7 +24,7 @@ let actions = {
 			index: index
 		}
 	},
-
+	//stage two
 	editQuestion: function(index) {
 		return {
 			type:constants.EDIT_QUESTION,

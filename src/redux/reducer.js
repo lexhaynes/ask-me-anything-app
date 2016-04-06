@@ -50,15 +50,10 @@ let reducer = function(state, action) {
 		        })
 		      })
 
+		//stage two
 		case constants.EDIT_QUESTION: 
-			return Object.assign({}, state, {
-		        questions: state.questions.map((q, index) => {
-		          return index === action.index ? 
-		            Object.assign({}, q, {
-		            	upvotes: q.upvotes+=1
-		            }) : q 
-		        })
-		      })
+			return state;
+
 
 			    
 

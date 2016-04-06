@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import actions from '../redux/actions'
 import initialState from '../redux/initialState'
 import QuestionForm from '../components/QuestionForm'
+import constants from '../redux/constants'
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -21,16 +22,18 @@ export default class Home extends React.Component {
 
   render() {
     var _this = this;
+    var approved = false;
     //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
+      approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
       return (
-          <div className={styles.questionBox} data-index={index} key={index}>
+          <div className={"questionBox "+ approved} data-index={index} key={index}>
             <h3 className = "title">{q.title}</h3>
             <div className = "submitTime">{q.submitTime}</div>
             <div className = "answerBox">
               <div className = "text">{q.answer.text}</div>
             </div>
-            <div className = "submitter">{q.submitter}</div>
+            <div className = "submitter">submitted by: {q.submitter}</div>
             <div className = "upvotes">
               <i className="fa fa-chevron-up" onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
               <i className="fa fa-chevron-down" onClick = {_this.props.actions.downvoteQuestion.bind(_this, index)}></i>
@@ -38,7 +41,7 @@ export default class Home extends React.Component {
             </div>
             <div className = "options">
                 <i className="fa fa-trash" onClick = {_this.props.actions.deleteQuestion.bind(_this, index)}></i>
-                <i className="fa fa-pencil" onClick = {_this.props.actions.editQuestion.bind(_this, index)}></i>
+                {/*<i className="fa fa-pencil" onClick = {_this.props.actions.editQuestion.bind(_this, index)}></i>*/}
             </div>
           {/* comments coming soon */}
       </div>

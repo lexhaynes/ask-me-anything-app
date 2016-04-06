@@ -12,8 +12,12 @@ import constants from '../redux/constants'
 
 export default class Admin extends React.Component {
   constructor(props) {
-    super(props);
+    super(props);    
     props.actions.displayQuestions();
+  }
+
+  home() {
+      browserHistory.push('/');
   }
 
   render() {
@@ -32,11 +36,9 @@ export default class Admin extends React.Component {
             <div className = {styles.upvotes}>
               <div className = {styles.number}>Upvotes: {q.upvotes}</div>
             </div>
-            
-
           {/* comments coming soon */}
-
           <div className = {styles.adminOptions}>
+          
             <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q._id)}>Approve</button>
             <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q._id)}>Reject</button>
           </div>
@@ -52,10 +54,11 @@ export default class Admin extends React.Component {
 
         {questions}
 
-        {/* <button className={styles.button} onClick={this.askQuestion}>Ask a Question</button> */}
-
         
-           
+        <hr />
+          
+        <button className = {styles.button} onClick = {this.home}>Home</button>
+
 
 
       </div>

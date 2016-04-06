@@ -99,11 +99,23 @@ let actions = {
 			})
 		}
 	},
-
-	rejectQuestion: function(index) {
-		return {
-			type:constants.REJECT_QUESTION,
-			index:index
+	//async DELETE
+	rejectQuestion: function(id) {
+		return dispatch => {
+			return axios.delete(constants.API_QUESTION + id , {
+				approvalStatus: constants.QUESTION_REJECTED
+			}).then(function(response) {
+				dispatch({
+					type: constants.REJECT_QUESTION,
+					id:id
+				})
+			}).catch(function(error) {
+				console.log('error', error)
+        		 dispatch({
+	     		 	type: constants.REQUEST_ERROR,
+	     		 	//requestStatus: constants.REQUEST_ERROR
+	     		 })	   
+			})
 		}
 	},
 }

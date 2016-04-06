@@ -49,7 +49,7 @@ let reducer = function(state, action) {
   		case constants.DELETE_QUESTION: 
 			return Object.assign({}, state, {
 		        questions: state.questions.filter((q, index) => {		    
-		            	return index !== action.index
+		            return index !== action.index
 		        })
 		      })
 
@@ -59,7 +59,7 @@ let reducer = function(state, action) {
 		        questions: state.questions.map((q) => {
 		          return q._id === action.id ? 
 		            Object.assign({}, q, {
-		            	approvalStatus: constants.QUESTION_APPROVED
+		            	approvalStatus: action.approvalStatus
 		            }) : q
 		        })
 		      })
@@ -70,7 +70,7 @@ let reducer = function(state, action) {
 		        questions: state.questions.map((q, index) => {
 		          return index === action.index ? 
 		            Object.assign({}, q, {
-		            	approvalStatus: constants.QUESTION_REJECTED
+		            	approvalStatus: action.approvalStatus
 		            }) : q
 		        })
 		      })

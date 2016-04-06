@@ -9,11 +9,12 @@ let actions = {
 			type: constants.DISPLAY_QUESTIONS
 		}
 	},
-	submitQuestion: function(newQuestion) {
-		console.log('subimtted', newQuestion)
+	submitQuestion: function(title, submitTime, submitter) {
 		return {
 			type: constants.SUBMIT_QUESTION,
-			newQuestion: newQuestion
+			title: title,
+			submitTime: submitTime,
+			submitter: submitter
 		}
 	},
 

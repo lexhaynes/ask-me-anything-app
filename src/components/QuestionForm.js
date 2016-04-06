@@ -78,7 +78,7 @@ export default class QuestionForm extends React.Component {
         </div>
 
         <button
-          onClick = {this.props.actions.submitQuestion}
+          onClick = {this.props.actions.submitQuestion.bind(this, this.state.title, this.state.submitTime, this.state.submitter)}
         >Submit</button>
 
       {/*<button 

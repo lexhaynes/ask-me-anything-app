@@ -1,0 +1,16 @@
+.content {
+  margin-top: 20px;
+  border:solid red 1px;
+}
+
+button {
+	display:block;
+}
+
+.questionForm {
+	
+}
+
+.questionBox {
+	border:dotted #ccc 1px;
+}

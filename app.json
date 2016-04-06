@@ -1,0 +1,15 @@
+{
+  "name": "Essential React",
+  "description": "A minimal skeleton for building testable React apps using Babel",
+  "keywords": [
+    "react",
+    "babel",
+    "starter"
+  ],
+  "repository": "https://github.com/pheuter/essential-react",
+  "logo": "https://placehold.it/50x50",
+  "env": {
+    "PRODUCTION": "true",
+    "NPM_CONFIG_PRODUCTION": "false"
+  }
+}

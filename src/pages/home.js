@@ -15,7 +15,6 @@ export default class Home extends React.Component {
     super(props);
     props.actions.displayQuestions();
   }
-
   adminLogin() {
     browserHistory.push('/admin');
   }
@@ -53,8 +52,7 @@ export default class Home extends React.Component {
 
     return (
       <div className={styles.content}>
-        <h1>AMA</h1>
-
+        <h1>{this.props.currentState.requestStatus}</h1>
         {questions}
 
         {/* <button className={styles.button} onClick={this.askQuestion}>Ask a Question</button> */}

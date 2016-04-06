@@ -3,7 +3,7 @@ import constants from './constants'
 export default function() {
 	var now = new Date().toISOString();
 	return {
-		isLoading: true,
+		requestStatus: constants.REQUESTING,
 		questions: [{
 				id: 0,
 				approvalStatus: constants.QUESTION_PENDING,

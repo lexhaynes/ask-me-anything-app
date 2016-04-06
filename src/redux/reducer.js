@@ -5,8 +5,10 @@ let reducer = function(state, action) {
 	switch (action.type) {
 
 		case constants.DISPLAY_QUESTIONS:
-			//for now do nothing
-			return Object.assign({}, state) 
+			return Object.assign({}, state, {
+				requestStatus: action.requestStatus,
+				questions: action.questions
+			}) 
 
 		case constants.UPVOTE_QUESTION: 
 			return Object.assign({}, state, {
@@ -39,6 +41,7 @@ let reducer = function(state, action) {
 						answerTime: '', text: ''
 					},
 					comments: [],
+					approvalStatus: action.approvalStatus,
 					index: state.questions.length - 1 //assume for now index is index.
 		        }]
 			 })
@@ -50,11 +53,11 @@ let reducer = function(state, action) {
 		        })
 		      })
 
-		//do more to update state here...
+		//do more to update state here... 
 		case constants.APPROVE_QUESTION: 
 			return Object.assign({}, state, {
-		        questions: state.questions.map((q, index) => {
-		          return index === action.index ? 
+		        questions: state.questions.map((q) => {
+		          return q._id === action.id ? 
 		            Object.assign({}, q, {
 		            	approvalStatus: constants.QUESTION_APPROVED
 		            }) : q

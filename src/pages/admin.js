@@ -37,8 +37,8 @@ export default class Admin extends React.Component {
           {/* comments coming soon */}
 
           <div className = {styles.adminOptions}>
-            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, index)}>Approve</button>
-            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, index)}>Reject</button>
+            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q._id)}>Approve</button>
+            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q._id)}>Reject</button>
           </div>
       </div>
 

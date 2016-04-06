@@ -36,6 +36,10 @@ export default class Home extends React.Component {
               <i className="fa fa-chevron-down" onClick = {_this.props.actions.downvoteQuestion.bind(_this, index)}></i>
               <div className = "number">{q.upvotes}</div>
             </div>
+            <div className = "options">
+                <i className="fa fa-trash" onClick = {_this.props.actions.deleteQuestion.bind(_this, index)}></i>
+                <i className="fa fa-pencil" onClick = {_this.props.actions.editQuestion.bind(_this, index)}></i>
+            </div>
           {/* comments coming soon */}
       </div>
 

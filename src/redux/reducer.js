@@ -11,7 +11,7 @@ let reducer = function(state, action) {
 		case constants.UPVOTE_QUESTION: 
 			return Object.assign({}, state, {
 		        questions: state.questions.map((q, index) => {
-		          return index === action.id ? 
+		          return index === action.index ? 
 		            Object.assign({}, q, {
 		            	upvotes: q.upvotes+=1
 		            }) : q 
@@ -19,10 +19,9 @@ let reducer = function(state, action) {
 		      })
 
 		case constants.DOWNVOTE_QUESTION: 
-
 			return Object.assign({}, state, {
 		        questions: state.questions.map((q, index) => {
-		          return index === action.id ? 
+		          return index === action.index ? 
 		            Object.assign({}, q, {
 		            	upvotes: q.upvotes === 0 ? q.upvotes = 0 : q.upvotes-=1
 		            }) : q
@@ -40,9 +39,26 @@ let reducer = function(state, action) {
 						answerTime: '', text: ''
 					},
 					comments: [],
-					id: state.questions.length - 1 //assume for now id is index.
+					index: state.questions.length - 1 //assume for now index is index.
 		        }]
 			 })
+
+  		case constants.DELETE_QUESTION: 
+			return Object.assign({}, state, {
+		        questions: state.questions.filter((q, index) => {		    
+		            	return index !== action.index
+		        })
+		      })
+
+		case constants.EDIT_QUESTION: 
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q, index) => {
+		          return index === action.index ? 
+		            Object.assign({}, q, {
+		            	upvotes: q.upvotes+=1
+		            }) : q 
+		        })
+		      })
 
 			    
 

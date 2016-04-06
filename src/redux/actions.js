@@ -18,30 +18,30 @@ let actions = {
 		}
 	},
 
-	deleteQuestion: function(id) {
+	deleteQuestion: function(index) {
 		return {
 			type:constants.DELETE_QUESTION,
-			id: id
+			index: index
 		}
 	},
 
-	editQuestion: function(id) {
+	editQuestion: function(index) {
 		return {
 			type:constants.EDIT_QUESTION,
-			id: id
+			index: index
 		}
 	},
 
-	upvoteQuestion: function(id) {
+	upvoteQuestion: function(index) {
 		return {
 			type: constants.UPVOTE_QUESTION,
-			id: id
+			index: index
 		}
 	},
-	downvoteQuestion: function(id) {
+	downvoteQuestion: function(index) {
 		return {
 			type: constants.DOWNVOTE_QUESTION,
-			id: id
+			index: index
 		}
 	}
 }

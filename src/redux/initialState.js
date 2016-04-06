@@ -6,7 +6,7 @@ export default function() {
 		questions: [{
 				id: 0,
 				title: "question title",
-				submitTime: "dateTimeString",
+				submitTime: "dateTimeString", //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
 				answer: {
 					text: "answer to the question",
 					answerTime: "dateTimeString"

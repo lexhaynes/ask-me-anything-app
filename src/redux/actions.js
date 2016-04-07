@@ -83,7 +83,8 @@ let actions = {
 	approveQuestion: function(id) {
 		return dispatch => {
 			return axios.put(constants.API_QUESTION + id , {
-				approvalStatus: constants.QUESTION_APPROVED
+				key: "approvalStatus",
+				value: constants.QUESTION_APPROVED
 			}).then(function(response) {
 				console.log('response: ', response)
 				dispatch({

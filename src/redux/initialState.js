@@ -9,10 +9,8 @@ export default function() {
 				approvalStatus: constants.QUESTION_PENDING,
 				title: "Ask me Anything",
 				submitTime: now , //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
-				answer: {
-					text: "",
-					isEditing: true
-				},
+				answer:  "",
+				editingAnswer: true,
 				submitter: "You",
 				upvotes: 0				
 			}]

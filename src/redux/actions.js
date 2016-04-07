@@ -39,7 +39,8 @@ let actions = {
 					type: constants.SUBMIT_QUESTION,
 					title: title,
 					submitTime: submitTime,
-					submitter: submitter	
+					submitter: submitter,
+					approvalStatus: constants.QUESTION_PENDING	
 				})
 			}).catch(function(error) {
 				console.log('error', error)
@@ -122,6 +123,13 @@ let actions = {
 	//async put
 	submitAnswer: function(id, answer) {
 		return dispatch => {
+			//dispatch to state before we even make put request
+			dispatch({
+				type: constants.SUBMIT_ANSWER,
+				answer: "a new answer",
+				editingAnswer: false
+				
+			})
 			return axios.put(constants.API_QUESTION + id , {
 				key: "answer",
 				value: "a new answer",
@@ -130,10 +138,8 @@ let actions = {
 				dispatch({
 					type: constants.SUBMIT_ANSWER,
 					id:id,
-					answer: {
-						text: "a new answer",
-						isEditing: false
-					}
+					answer: "a new answer",
+					editingAnswer: false
 				})
 			}).catch(function(error) {
 				console.log('error', error)

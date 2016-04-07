@@ -28,18 +28,17 @@ export default class Admin extends React.Component {
 
     //if there is an answer already, show it; otherwise show an input box. 
     //when the edit button is clicked, show the input box at that particular index
-    var editing = "editing-" + String(q.answer.isEditing);
-    console.log('editing is: ' + editing);
+    var editing = q.editingAnswer ? "block" : "hidden";
     var answer = q.answer === '' ?
-                <div className = {classnames(styles.answerInput, styles[editing])}>
-                <input type = "text" placeholder = "Answer Question" />
+                <div className = {styles.answerInput}>
+                <input className = {styles[editing]} type = "text" placeholder = "Answer Question" />
                 <button 
                   className={styles.button} 
                   onClick={_this.props.actions.submitAnswer.bind(_this, q.id)}>Submit</button>
                 </div>
             :
                 <div className = {styles.answerInput}>
-                <div className = {styles.text}> {q.answer.text}</div>
+                <div className = {styles.text}> {q.answer}</div>
                 <button 
                   className={styles.button} 
                   onClick={_this.editAnswer}>Edit</button>

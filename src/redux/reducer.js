@@ -13,10 +13,8 @@ let reducer = function(state, action) {
 						submitTime: q.submitTime,
 						submitter: q.submitter,
 						upvotes: q.upvotes,
-						answer: {
-							text: "", //this isn't in db, so not in q
-							isEditing: false
-						},
+						answer: q.answer,
+						editingAnswer: true,
 						approvalStatus: q.approvalStatus,
 						id: q._id
 				})
@@ -50,10 +48,8 @@ let reducer = function(state, action) {
 					submitTime: action.submitTime,
 					submitter: action.submitter,
 					upvotes: 0,
-					answer: {
-						text: "",
-						isEditing: state.isEditing
-					},
+					answer: "",
+					editingAnswer: state.editingAnswer,
 					approvalStatus: action.approvalStatus,
 					index: state.questions.length - 1 //assume for now index is index.
 		        }]
@@ -94,10 +90,9 @@ let reducer = function(state, action) {
 		        questions: state.questions.map((q, id) => {
 		          return id === action.id ? 
 		            Object.assign({}, q, {
-		            answer: {
-						text: action.answer,
-						isEditing: action.isEditing
-					}
+		            answer: action.answer,
+					editingAnswer: action.editingAnswer
+					
 		            }) : q
 		        })
 		      })

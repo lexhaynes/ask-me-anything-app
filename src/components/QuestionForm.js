@@ -78,14 +78,14 @@ export default class QuestionForm extends React.Component {
         </div>
 
         <button
-          onClick = {this.props.actions.submitQuestion.bind(this, this.state.title, this.state.submitTime, this.state.submitter)}
-        >Submit</button>
+          onClick = {this.props.actions.submitQuestion.bind(
+            this, 
+            this.state.title, 
+            this.state.submitTime, 
+            this.state.submitter
+          )}>Submit</button>
 
         <button onClick = {this.props.closeForm}>Close</button>
-
-      {/*<button 
-        className={styles.button} 
-        onClick={this.goBack}>Back to Questions</button>*/}
 
       </div>
     );

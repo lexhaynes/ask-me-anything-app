@@ -157,7 +157,20 @@ let actions = {
 			id: id,
 			editingAnswer: true
 		}
+	},
+
+	//fix this!
+	updateAnswer: function(e, id) {
+		console.log(e.target)
+		console.log(id)
+		return {
+			type: constants.UPDATE_ANSWER,
+		/*	id: id,
+			value: e.target.value*/
+		}
 	}
+
+
 
 
 

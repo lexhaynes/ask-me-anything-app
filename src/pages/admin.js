@@ -25,18 +25,16 @@ export default class Admin extends React.Component {
     var approved = false;
     //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
-      
+
     var answer = q.editingAnswer ?
               //editing answer state
                 <div>
-                <input type = "text" placeholder = "Answer Question" />
+                <input type = "text" placeholder = "Answer Question" value = {q.answer} onChange = {_this.props.actions.updateAnswer.bind(_this,  q.id)} />
                 <button 
                   className={styles.button} 
-                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id)}>Submit</button>
+                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id, q.answer)}>Submit</button>
                 </div>
             :
-              //once we have answers, add edit option
-              //set editingAnswer to FALSE here because we know it's there
                 <div>              
                 <div className = {styles.text}> {q.answer}</div>
                 <button 

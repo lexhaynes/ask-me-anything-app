@@ -25,23 +25,23 @@ export default class Admin extends React.Component {
     var approved = false;
     //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
-
-    //if there is an answer already, show it; otherwise show an input box. 
-    //when the edit button is clicked, show the input box at that particular index
-    var editing = q.editingAnswer ? "block" : "hidden";
-    var answer = q.answer === '' ?
-                <div className = {styles.answerInput}>
-                <input className = {styles[editing]} type = "text" placeholder = "Answer Question" />
+      
+    var answer = q.editingAnswer ?
+              //editing answer state
+                <div>
+                <input type = "text" placeholder = "Answer Question" />
                 <button 
                   className={styles.button} 
                   onClick={_this.props.actions.submitAnswer.bind(_this, q.id)}>Submit</button>
                 </div>
             :
-                <div className = {styles.answerInput}>
+              //once we have answers, add edit option
+              //set editingAnswer to FALSE here because we know it's there
+                <div>              
                 <div className = {styles.text}> {q.answer}</div>
                 <button 
                   className={styles.button} 
-                  onClick={_this.editAnswer}>Edit</button>
+                  onClick={_this.props.actions.editAnswer.bind(_this, q.id)}>Edit</button>
                 </div>;
           
       return (

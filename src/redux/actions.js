@@ -120,7 +120,7 @@ let actions = {
 		}
 	},
 
-	//async put
+	//async put -- need to pass actual answer value here
 	submitAnswer: function(id, answer) {
 		return dispatch => {
 			//dispatch to state before we even make put request
@@ -150,6 +150,15 @@ let actions = {
 			})
 		}
 	},
+
+	editAnswer: function(id) {
+		return {
+			type:constants.EDIT_ANSWER,
+			id: id,
+			editingAnswer: true
+		}
+	}
+
 
 
 }

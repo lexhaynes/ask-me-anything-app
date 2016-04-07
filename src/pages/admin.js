@@ -29,16 +29,16 @@ export default class Admin extends React.Component {
           <div className={classnames(styles.questionBox, styles["approved-true"])} data-index={index} key={index}>
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
-            <div className = {styles.answerBox}>
-              <div className = {styles.text}>{q.answer.text}</div>
+            <div className = {styles.answerInput}>
+              <input type = "text" placeholder = "Answer Question" />
+              <button className={styles.button} onClick={_this.props.actions.submitAnswer.bind(_this, q._id)}>Submit</button>
             </div>
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>
               <div className = {styles.number}>Upvotes: {q.upvotes}</div>
             </div>
-          {/* comments coming soon */}
-          <div className = {styles.adminOptions}>
-          
+         
+          <div className = {styles.adminOptions}>       
             <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q._id)}>Approve</button>
             <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q._id)}>Reject</button>
           </div>

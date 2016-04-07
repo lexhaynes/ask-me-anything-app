@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from "../style.css"
 import { browserHistory } from 'react-router'
+import classnames from 'classnames'
+import styles from "../style.css"
 //redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -50,9 +51,8 @@ export default class QuestionForm extends React.Component {
   }
 
   render() {
-  
     return (
-      <div className={styles.questionForm}>
+      <div className={classnames(styles.questionForm, styles[this.props.display])}>
         <h1>Question Form </h1>
 
        <div>
@@ -80,6 +80,8 @@ export default class QuestionForm extends React.Component {
         <button
           onClick = {this.props.actions.submitQuestion.bind(this, this.state.title, this.state.submitTime, this.state.submitter)}
         >Submit</button>
+
+        <button onClick = {this.props.closeForm}>Close</button>
 
       {/*<button 
         className={styles.button} 

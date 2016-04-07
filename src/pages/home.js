@@ -14,11 +14,26 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     props.actions.displayQuestions();
+    this.state = {
+      questionFormVisibility: "hidden"
+    }
+    this.showQuestionForm = this.showQuestionForm.bind(this);
+    this.hideQuestionForm = this.hideQuestionForm.bind(this);
   }
   adminLogin() {
     browserHistory.push('/admin');
   }
 
+  showQuestionForm() {
+    this.setState({
+      questionFormVisibility: "block"
+    })
+  }
+  hideQuestionForm() {
+    this.setState({
+      questionFormVisibility: "hidden"
+    })
+  }
 
   render() {
     var _this = this;
@@ -31,7 +46,7 @@ export default class Home extends React.Component {
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
             <div className = {styles.answerBox}>
-              <div className = {styles.text}>{q.answer.text}</div>
+              <div className = {styles.text}>{q.answer}</div>
             </div>
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>
@@ -54,14 +69,13 @@ export default class Home extends React.Component {
       <div className={styles.content}>
         <h1>{this.props.currentState.requestStatus}</h1>
         {questions}
-
-        {/* <button className={styles.button} onClick={this.askQuestion}>Ask a Question</button> */}
-
         
-          <QuestionForm />
+          <QuestionForm display = {this.state.questionFormVisibility} closeForm = {this.hideQuestionForm} />
 
           <hr />
           
+          <button className = {styles.button} onClick = {this.showQuestionForm}>Ask Question</button>
+
           <button className = {styles.button} onClick = {this.adminLogin}>Admin Login</button>
 
       </div>

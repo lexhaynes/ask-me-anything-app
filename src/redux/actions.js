@@ -119,6 +119,28 @@ let actions = {
 			})
 		}
 	},
+
+	//async
+	submitAnswer: function(id, answer) {
+		return dispatch => {
+			return axios.put(constants.API_QUESTION + id , {
+				key: "answer",
+				value: answer,
+			}).then(function(response) {
+				console.log('response: ', response)
+				dispatch({
+					type: constants.SUBMIT_QUESTION,
+					id:id
+				})
+			}).catch(function(error) {
+				console.log('error', error)
+        		 dispatch({
+	     		 	type: constants.REQUEST_ERROR,
+	     		 	//requestStatus: constants.REQUEST_ERROR
+	     		 })	   
+			})
+		}
+	},
 }
 
 

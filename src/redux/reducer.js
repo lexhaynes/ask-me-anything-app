@@ -7,8 +7,21 @@ let reducer = function(state, action) {
 		case constants.DISPLAY_QUESTIONS:
 			return Object.assign({}, state, {
 				requestStatus: action.requestStatus,
-				questions: action.questions
+				questions: action.questions.map((q) => {
+					return Object.assign({}, state, {
+			        	title: q.title,
+						submitTime: q.submitTime,
+						submitter: q.submitter,
+						upvotes: q.upvotes,
+						answer: {
+							text: "", //this isn't in db, so not in q
+							isEditing: false
+						},
+						approvalStatus: q.approvalStatus,
+						id: q._id
+				})
 			}) 
+		})
 
 		case constants.UPVOTE_QUESTION: 
 			return Object.assign({}, state, {
@@ -38,9 +51,9 @@ let reducer = function(state, action) {
 					submitter: action.submitter,
 					upvotes: 0,
 					answer: {
-						answerTime: '', text: ''
+						text: "",
+						isEditing: state.isEditing
 					},
-					comments: [],
 					approvalStatus: action.approvalStatus,
 					index: state.questions.length - 1 //assume for now index is index.
 		        }]
@@ -71,6 +84,20 @@ let reducer = function(state, action) {
 		          return index === action.index ? 
 		            Object.assign({}, q, {
 		            	approvalStatus: action.approvalStatus
+		            }) : q
+		        })
+		      })
+
+		//do more to update state here...
+		case constants.SUBMIT_ANSWER: 
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q, id) => {
+		          return id === action.id ? 
+		            Object.assign({}, q, {
+		            answer: {
+						text: action.answer,
+						isEditing: action.isEditing
+					}
 		            }) : q
 		        })
 		      })

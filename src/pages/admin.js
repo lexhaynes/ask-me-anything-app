@@ -25,22 +25,39 @@ export default class Admin extends React.Component {
     var approved = false;
     //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
+
+    //if there is an answer already, show it; otherwise show an input box. 
+    //when the edit button is clicked, show the input box at that particular index
+    var editing = "editing-" + String(q.answer.isEditing);
+    console.log('editing is: ' + editing);
+    var answer = q.answer === '' ?
+                <div className = {classnames(styles.answerInput, styles[editing])}>
+                <input type = "text" placeholder = "Answer Question" />
+                <button 
+                  className={styles.button} 
+                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id)}>Submit</button>
+                </div>
+            :
+                <div className = {styles.answerInput}>
+                <div className = {styles.text}> {q.answer.text}</div>
+                <button 
+                  className={styles.button} 
+                  onClick={_this.editAnswer}>Edit</button>
+                </div>;
+          
       return (
           <div className={classnames(styles.questionBox, styles["approved-true"])} data-index={index} key={index}>
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
-            <div className = {styles.answerInput}>
-              <input type = "text" placeholder = "Answer Question" />
-              <button className={styles.button} onClick={_this.props.actions.submitAnswer.bind(_this, q._id)}>Submit</button>
-            </div>
+            {answer}                       
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>
               <div className = {styles.number}>Upvotes: {q.upvotes}</div>
             </div>
          
           <div className = {styles.adminOptions}>       
-            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q._id)}>Approve</button>
-            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q._id)}>Reject</button>
+            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q.id)}>Approve</button>
+            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q.id)}>Reject</button>
           </div>
       </div>
 

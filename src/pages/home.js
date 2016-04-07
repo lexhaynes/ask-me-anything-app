@@ -46,7 +46,7 @@ export default class Home extends React.Component {
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
             <div className = {styles.answerBox}>
-              <div className = {styles.text}>{q.answer}</div>
+              <div className = {styles.text}>{q.answer.text}</div>
             </div>
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>

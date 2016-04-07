@@ -13,7 +13,6 @@ let actions = {
 				questions: initialState().questions
 			})
 			return axios.get(constants.API_QUESTIONS).then(function(response) {
-				console.log(response);
 				dispatch({
 					type: constants.DISPLAY_QUESTIONS,
 					requestStatus: constants.REQUEST_SUCCESS,
@@ -120,17 +119,21 @@ let actions = {
 		}
 	},
 
-	//async
+	//async put
 	submitAnswer: function(id, answer) {
 		return dispatch => {
 			return axios.put(constants.API_QUESTION + id , {
 				key: "answer",
-				value: answer,
+				value: "a new answer",
 			}).then(function(response) {
 				console.log('response: ', response)
 				dispatch({
-					type: constants.SUBMIT_QUESTION,
-					id:id
+					type: constants.SUBMIT_ANSWER,
+					id:id,
+					answer: {
+						text: "a new answer",
+						isEditing: false
+					}
 				})
 			}).catch(function(error) {
 				console.log('error', error)
@@ -141,6 +144,8 @@ let actions = {
 			})
 		}
 	},
+
+
 }
 
 

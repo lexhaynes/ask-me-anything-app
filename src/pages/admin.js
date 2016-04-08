@@ -10,10 +10,23 @@ import initialState from '../redux/initialState'
 import QuestionForm from '../components/QuestionForm'
 import constants from '../redux/constants'
 
-export default class Admin extends React.Component {
+export default class Admin extends React.Component {  
   constructor(props) {
     super(props);    
     props.actions.displayQuestions();
+    this.state = {
+      answers: [""]
+    }
+    this.updateAnswer = this.updateAnswer.bind(this)
+  }
+
+  updateAnswer(index, e) {
+      var updated = this.props.questions.map(function(q, i) {
+        return i === index ? e.target.value : q.answer
+    });
+    this.setState({
+      answers: updated
+    })
   }
 
   home() {
@@ -21,20 +34,19 @@ export default class Admin extends React.Component {
   }
 
   render() {
-    var _this = this;
+   var _this = this;
     var approved = false;
-    //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
-
+      console.log('answer being passed to action: ', _this.state.answers[index])
     var answer = q.editingAnswer ?
               //editing answer state
                 <div>
-                <input type = "text" placeholder = "Answer Question" value = {q.answer} onChange = {_this.props.actions.updateAnswer.bind(_this,  q.id)} />
+                <input type = "text" placeholder = "Answer Question" defaultValue = {_this.props.questions[index].answer} value = {_this.state.answers[index]} onChange = {_this.updateAnswer.bind(_this, index)} />
                 <button 
                   className={styles.button} 
-                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id, q.answer)}>Submit</button>
+                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id,  _this.state.answers[index])}>Submit</button>
                 </div>
-            :
+            : //displaying answer state
                 <div>              
                 <div className = {styles.text}> {q.answer}</div>
                 <button 

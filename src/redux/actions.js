@@ -141,19 +141,19 @@ let actions = {
 			//dispatch to state before we even make put request
 			dispatch({
 				type: constants.SUBMIT_ANSWER,
-				answer: "a new answer",
+				answer: answer,
 				editingAnswer: false
 				
 			})
 			return axios.put(constants.API_QUESTION + id , {
 				key: "answer",
-				value: "a new answer",
+				value: answer,
 			}).then(function(response) {
 				console.log('response: ', response)
 				dispatch({
 					type: constants.SUBMIT_ANSWER,
 					id:id,
-					answer: "a new answer",
+					answer: answer,
 					editingAnswer: false
 				})
 			}).catch(function(error) {
@@ -173,19 +173,6 @@ let actions = {
 			editingAnswer: true
 		}
 	},
-
-	//fix this!
-	updateAnswer: function(e, id) {
-		console.log(e.target)
-		console.log(id)
-		return {
-			type: constants.UPDATE_ANSWER,
-		/*	id: id,
-			value: e.target.value*/
-		}
-	}
-
-
 
 
 

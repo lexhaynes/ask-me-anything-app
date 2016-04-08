@@ -4,6 +4,20 @@ export default function() {
 	var now = new Date().toISOString();
 	return {
 		requestStatus: constants.REQUESTING,
+		subjectProfile: {
+			firstName: "",
+			lastName: "",
+			email: "",
+			picture: "",
+			description: "",
+			editing: {
+				firstName: true,
+				lastName: true,
+				email: true,
+				picture: true,
+				description: true
+			}
+		},
 		questions: [{
 				id: 0,
 				approvalStatus: constants.QUESTION_PENDING,

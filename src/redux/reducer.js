@@ -129,6 +129,30 @@ let reducer = function(state, action) {
 		            }) : q
 		        })
 		      })
+
+		case constants.SUBMIT_PROFILE: 
+  			return Object.assign({}, state, {
+		        subjectProfile: {
+					firstName: action.profile.firstName,
+					lastName: action.profile.lastName,
+					picture: action.profile.picture,
+					email: action.profile.email,
+					description: action.profile.description,
+		        }
+			 })
+
+		case constants.DISPLAY_PROFILE:
+			return Object.assign({}, state, {
+				subjectProfile: {
+					firstName: action.profile.firstName,
+					lastName: action.profile.lastName,
+					picture: action.profile.picture,
+					email: action.profile.email,
+					description: action.profile.description,
+				}
+		})
+
+
 			    
 
 		default: 

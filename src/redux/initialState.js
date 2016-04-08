@@ -11,6 +11,7 @@ export default function() {
 				submitTime: now , //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
 				answer:  "",
 				editingAnswer: true,
+				editingQuestion: true,
 				submitter: "You",
 				upvotes: 0				
 			}]

@@ -73,11 +73,40 @@ let actions = {
 		}
 	},
 
-	//TODO
+	updateQuestion: function(id, title) {
+		return dispatch => {
+			//dispatch to state before we even make put request
+			dispatch({
+				type: constants.UPDATE_QUESTION,
+				title: title,
+				editingQuestion: false
+				
+			})
+			return axios.put(constants.API_QUESTION + id , {
+				key: "title",
+				value: title,
+			}).then(function(response) {
+				dispatch({
+					type: constants.UPDATE_QUESTION,
+					id:id,
+					title: title,
+					editingQuestion: false
+				})
+			}).catch(function(error) {
+				console.log('error', error)
+        		 dispatch({
+	     		 	type: constants.REQUEST_ERROR,
+	     		 	//requestStatus: constants.REQUEST_ERROR
+	     		 })	   
+			})
+		}
+	},
+
 	editQuestion: function(id) {
 		return {
-			type:constants.EDIT_QUESTION,
-			id: id
+			type:constants.EDITING_QUESTION,
+			id: id,
+			editingQuestion: true
 		}
 	},
 
@@ -135,7 +164,7 @@ let actions = {
 		}
 	},
 
-	//async put -- need to pass actual answer value here
+	//async put
 	submitAnswer: function(id, answer) {
 		return dispatch => {
 			//dispatch to state before we even make put request
@@ -149,7 +178,6 @@ let actions = {
 				key: "answer",
 				value: answer,
 			}).then(function(response) {
-				console.log('response: ', response)
 				dispatch({
 					type: constants.SUBMIT_ANSWER,
 					id:id,
@@ -168,13 +196,11 @@ let actions = {
 
 	editAnswer: function(id) {
 		return {
-			type:constants.EDIT_ANSWER,
+			type:constants.EDITING_ANSWER,
 			id: id,
 			editingAnswer: true
 		}
 	},
-
-
 
 }
 

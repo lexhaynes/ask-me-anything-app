@@ -37,7 +37,6 @@ export default class Admin extends React.Component {
    var _this = this;
     var approved = false;
     var questions = this.props.questions.map(function(q, index) {
-      console.log('answer being passed to action: ', _this.state.answers[index])
     var answer = q.editingAnswer ?
               //editing answer state
                 <div>

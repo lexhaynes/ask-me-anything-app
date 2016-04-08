@@ -62,9 +62,28 @@ let reducer = function(state, action) {
 		        })
 		      })
 
-		//TODO
-		case constants.EDIT_QUESTION: 
-				return state
+		case constants.UPDATE_QUESTION: 
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q) => {
+		          return q.id === action.id ? 
+		            Object.assign({}, q, {
+		            title: action.title,
+					editingQuestion: action.editingQuestion
+		            }) : q
+		        })
+		      })
+
+
+		case constants.EDITING_QUESTION: 
+			return Object.assign({}, state, {
+	        questions: state.questions.map((q) => {
+	          return q.id === action.id ? 
+	            Object.assign({}, q, {
+				editingQuestion: action.editingQuestion
+	            }) : q
+	        })
+	      })
+			    
 		      
 
 		//do more to update state here... 
@@ -101,7 +120,7 @@ let reducer = function(state, action) {
 		        })
 		      })
 
-		case constants.EDIT_ANSWER: 
+		case constants.EDITING_ANSWER: 
 			return Object.assign({}, state, {
 		        questions: state.questions.map((q) => {
 		          return q.id === action.id ? 

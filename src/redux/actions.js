@@ -51,11 +51,25 @@ let actions = {
 			})
 		}
 	},
-
+	
+	//async
 	deleteQuestion: function(id) {
-		return {
-			type:constants.DELETE_QUESTION,
-			index: id
+		return dispatch => {
+			return axios.delete(constants.API_QUESTION + id , {
+				type:constants.DELETE_QUESTION,
+				id: id
+			}).then(function(response) {
+				dispatch({
+					type:constants.DELETE_QUESTION,
+					id: id
+				})
+			}).catch(function(error) {
+				console.log('error', error)
+        		 dispatch({
+	     		 	type: constants.REQUEST_ERROR,
+	     		 	//requestStatus: constants.REQUEST_ERROR
+	     		 })	   
+			})
 		}
 	},
 
@@ -63,7 +77,7 @@ let actions = {
 	editQuestion: function(id) {
 		return {
 			type:constants.EDIT_QUESTION,
-			index: id
+			id: id
 		}
 	},
 

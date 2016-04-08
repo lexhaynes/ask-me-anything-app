@@ -58,7 +58,7 @@ let reducer = function(state, action) {
   		case constants.DELETE_QUESTION: 
 			return Object.assign({}, state, {
 		        questions: state.questions.filter((q) => {		    
-		            return id !== action.id
+		            return q.id !== action.id
 		        })
 		      })
 

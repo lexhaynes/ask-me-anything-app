@@ -52,17 +52,18 @@ let actions = {
 		}
 	},
 
-	deleteQuestion: function(index) {
+	deleteQuestion: function(id) {
 		return {
 			type:constants.DELETE_QUESTION,
-			index: index
+			index: id
 		}
 	},
-	//stage three
-	editQuestion: function(index) {
+
+	//TODO
+	editQuestion: function(id) {
 		return {
 			type:constants.EDIT_QUESTION,
-			index: index
+			index: id
 		}
 	},
 

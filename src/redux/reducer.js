@@ -8,7 +8,7 @@ let reducer = function(state, action) {
 			return Object.assign({}, state, {
 				requestStatus: action.requestStatus,
 				questions: action.questions.map((q) => {
-					return Object.assign({}, state, {
+					return {
 			        	title: q.title,
 						submitTime: q.submitTime,
 						submitter: q.submitter,
@@ -17,7 +17,7 @@ let reducer = function(state, action) {
 						editingAnswer: q.editingAnswer,
 						approvalStatus: q.approvalStatus,
 						id: q._id
-				})
+				}
 			}) 
 		})
 
@@ -57,10 +57,15 @@ let reducer = function(state, action) {
 
   		case constants.DELETE_QUESTION: 
 			return Object.assign({}, state, {
-		        questions: state.questions.filter((q, index) => {		    
-		            return index !== action.index
+		        questions: state.questions.filter((q) => {		    
+		            return id !== action.id
 		        })
 		      })
+
+		//TODO
+		case constants.EDIT_QUESTION: 
+				return state
+		      
 
 		//do more to update state here... 
 		case constants.APPROVE_QUESTION: 
@@ -105,13 +110,6 @@ let reducer = function(state, action) {
 		            }) : q
 		        })
 		      })
-
-
-		//stage two
-		case constants.EDIT_QUESTION: 
-			return state;
-
-
 			    
 
 		default: 

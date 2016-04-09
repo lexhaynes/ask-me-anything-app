@@ -96,23 +96,22 @@ export default class Home extends React.Component {
     return (
 
       <PageTemplate content = {
-        <div className="mdl-grid">      
-          <div className="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
-              <p>{this.props.currentState.requestStatus}</p>
-              {questions}
+          <div>
+            <p>{this.props.currentState.requestStatus}</p>
+            
+            {questions}
+            
+              <QuestionForm 
+                display = {this.state.questionFormVisibility} 
+                closeForm = {this.hideQuestionForm} 
+              />
+
+              <hr />
               
-                <QuestionForm 
-                  display = {this.state.questionFormVisibility} 
-                  closeForm = {this.hideQuestionForm} 
-                />
+              <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
 
-                <hr />
-                
-                <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
-
-                <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
-          </div>
-        </div>
+              <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
+            </div>
       } />
     
     );

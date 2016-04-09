@@ -6,8 +6,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../redux/actions'
 import initialState from '../redux/initialState'
-import QuestionForm from '../components/QuestionForm'
 import constants from '../redux/constants'
+//components
+import PageTemplate from '../components/PageTemplate'
+import QuestionForm from '../components/QuestionForm'
+
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -91,25 +94,27 @@ export default class Home extends React.Component {
     })
 
     return (
-      <div>
 
-        <header>Header</header>
+      <PageTemplate content = {
+        <div className="mdl-grid">      
+          <div className="mdl-cell mdl-cell--10-col mdl-cell--1-offset-desktop">
+              <p>{this.props.currentState.requestStatus}</p>
+              {questions}
+              
+                <QuestionForm 
+                  display = {this.state.questionFormVisibility} 
+                  closeForm = {this.hideQuestionForm} 
+                />
 
-        <h1>{this.props.currentState.requestStatus}</h1>
-        {questions}
-        
-          <QuestionForm 
-            display = {this.state.questionFormVisibility} 
-            closeForm = {this.hideQuestionForm} 
-          />
+                <hr />
+                
+                <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
 
-          <hr />
-          
-          <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
-
-          <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
-
-      </div>
+                <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
+          </div>
+        </div>
+      } />
+    
     );
   }
 }

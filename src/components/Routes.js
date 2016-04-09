@@ -3,12 +3,10 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App';
 import Home from '../pages/home'
 import Admin from '../pages/admin'
-import Profile from '../pages/profile'
 
 export default (
   <Route path="/" component={App}>
   	<IndexRoute component={Home} />
   	<Route path="/admin" component={Admin} />
-  	<Route path="/profile" component={Profile} />
   </Route>
 );

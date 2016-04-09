@@ -32,9 +32,6 @@ export default class Admin extends React.Component {
   home() {
       browserHistory.push('/');
   }
-  profile() {
-      browserHistory.push('/profile');
-  }
 
   render() {
    var _this = this;
@@ -86,7 +83,6 @@ export default class Admin extends React.Component {
         <hr />
           
         <button className = {styles.button} onClick = {this.home}>Home</button>
-        <button className = {styles.button} onClick = {this.profile}>Add Profile</button>
 
 
 

@@ -1,6 +1,5 @@
 .content {
   margin-top: 20px;
-  border:solid red 1px;
 }
 
 /* ===== Helpers ===== */
@@ -36,14 +35,22 @@ button {
 	border:dotted green 1px;
 }
 
+
+
 .approved-false { 
 	.title,
 	.submitTime,
+	.answer,
 	.submitter,
 	.upvotes,
 	.options {
 		color:#ccc;
 	}
+}
+.admin.approved-false { 
+
+	border:solid red 1px;
+	
 }
 
 
@@ -60,4 +67,12 @@ button {
 		display:inline;
 		margin:1em 1em 0 0;
 	}
+}
+
+.hidden {
+	display:none;
+}
+
+.visible {
+	display:block;
 }

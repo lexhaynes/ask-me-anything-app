@@ -14,24 +14,67 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     props.actions.displayQuestions();
+    this.state = {
+      questionFormVisibility: "hidden",
+      questions: [""]
+    }
+    this.showQuestionForm = this.showQuestionForm.bind(this);
+    this.hideQuestionForm = this.hideQuestionForm.bind(this);
+    this.updateQuestion = this.updateQuestion.bind(this);
   }
+  updateQuestion(index, e) {
+      var updated = this.props.questions.map(function(q, i) {
+        return i === index ? e.target.value : q.title
+    });
+    this.setState({
+      questions: updated
+    })
+  }
+
   adminLogin() {
     browserHistory.push('/admin');
   }
 
+  showQuestionForm() {
+    this.setState({
+      questionFormVisibility: "block"
+    })
+  }
+  hideQuestionForm() {
+    this.setState({
+      questionFormVisibility: "hidden"
+    })
+  }
 
   render() {
     var _this = this;
     var approved = false;
-    //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
+          var question = q.editingQuestion ?
+              //editing question state
+                <div>
+                <input type = "text" placeholder = "Ask Question" defaultValue = {_this.props.questions[index].title} value = {_this.state.questions[index]} onChange = {_this.updateQuestion.bind(_this, index)} />
+                <button 
+                  className={styles.button} 
+                  onClick={_this.props.actions.updateQuestion.bind(_this, q.id,  _this.state.questions[index])}>Submit</button>
+                </div>
+            : //displaying question state
+                <div>              
+                <h3 className = {styles.title}> {q.title}</h3>
+                <button 
+                  className={styles.button} 
+                  onClick={_this.props.actions.editQuestion.bind(_this, q.id)}>Edit</button>
+                </div>;
+
       return (
           <div className={classnames(styles.questionBox, styles[approved])} data-index={index} key={index}>
-            <h3 className = {styles.title}>{q.title}</h3>
+
+            {question}
+
             <div className = {styles.submitTime}> {q.submitTime}</div>
             <div className = {styles.answerBox}>
-              <div className = {styles.text}>{q.answer.text}</div>
+              <div className = {styles.text}><strong>Answer: </strong>{q.answer}</div>
             </div>
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>
@@ -40,10 +83,8 @@ export default class Home extends React.Component {
               <div className = {styles.number}>{q.upvotes}</div>
             </div>
             <div className = {styles.options}>
-                <i className = {classnames(styles.clickable, "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, index)}></i>
-                {/*<i className="fa fa-pencil" onClick = {_this.props.actions.editQuestion.bind(_this, index)}></i>*/}
+                <i className = {classnames(styles.clickable, "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
             </div>
-          {/* comments coming soon */}
       </div>
 
 
@@ -54,14 +95,13 @@ export default class Home extends React.Component {
       <div className={styles.content}>
         <h1>{this.props.currentState.requestStatus}</h1>
         {questions}
-
-        {/* <button className={styles.button} onClick={this.askQuestion}>Ask a Question</button> */}
-
         
-          <QuestionForm />
+          <QuestionForm display = {this.state.questionFormVisibility} closeForm = {this.hideQuestionForm} />
 
           <hr />
           
+          <button className = {styles.button} onClick = {this.showQuestionForm}>Ask Question</button>
+
           <button className = {styles.button} onClick = {this.adminLogin}>Admin Login</button>
 
       </div>

@@ -10,10 +10,23 @@ import initialState from '../redux/initialState'
 import QuestionForm from '../components/QuestionForm'
 import constants from '../redux/constants'
 
-export default class Admin extends React.Component {
+export default class Admin extends React.Component {  
   constructor(props) {
     super(props);    
     props.actions.displayQuestions();
+    this.state = {
+      answers: [""]
+    }
+    this.updateAnswer = this.updateAnswer.bind(this)
+  }
+
+  updateAnswer(index, e) {
+      var updated = this.props.questions.map(function(q, i) {
+        return i === index ? e.target.value : q.answer
+    });
+    this.setState({
+      answers: updated
+    })
   }
 
   home() {
@@ -22,25 +35,39 @@ export default class Admin extends React.Component {
 
   render() {
     var _this = this;
-    var approved = false;
-    //iterate through questions. for now just initial state, later retrieved data
     var questions = this.props.questions.map(function(q, index) {
+      var approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
+ 
+
+      var answer = q.editingAnswer ?
+              //editing answer state
+                <div>
+                <input type = "text" placeholder = "Answer Question" defaultValue = {_this.props.questions[index].answer} value = {_this.state.answers[index]} onChange = {_this.updateAnswer.bind(_this, index)} />
+                <button 
+                  className={styles.button} 
+                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id,  _this.state.answers[index])}>Submit</button>
+                </div>
+            : //displaying answer state
+                <div>              
+                <div className = {styles.text}> {q.answer}</div>
+                <button 
+                  className={styles.button} 
+                  onClick={_this.props.actions.editAnswer.bind(_this, q.id)}>Edit</button>
+                </div>;
+          
       return (
-          <div className={classnames(styles.questionBox, styles["approved-true"])} data-index={index} key={index}>
+          <div className={classnames(styles.questionBox, styles[approved, "admin"])} data-index={index} key={index}>
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
-            <div className = {styles.answerBox}>
-              <div className = {styles.text}>{q.answer.text}</div>
-            </div>
+            {answer}                       
             <div className = {styles.submitter}>submitted by: {q.submitter}</div>
             <div className = {styles.upvotes}>
               <div className = {styles.number}>Upvotes: {q.upvotes}</div>
             </div>
-          {/* comments coming soon */}
-          <div className = {styles.adminOptions}>
-          
-            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q._id)}>Approve</button>
-            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q._id)}>Reject</button>
+         
+          <div className = {styles.adminOptions}>       
+            <button className={styles.button} onClick={_this.props.actions.approveQuestion.bind(_this, q.id)}>Approve</button>
+            <button className={styles.button} onClick={_this.props.actions.rejectQuestion.bind(_this, q.id)}>Reject</button>
           </div>
       </div>
 

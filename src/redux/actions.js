@@ -133,7 +133,9 @@ let actions = {
 				console.log('response: ', response)
 				dispatch({
 					type: constants.APPROVE_QUESTION,
-					id:id
+					id:id,
+					approvalStatus: constants.QUESTION_APPROVED
+
 				})
 			}).catch(function(error) {
 				console.log('error', error)
@@ -152,7 +154,8 @@ let actions = {
 			}).then(function(response) {
 				dispatch({
 					type: constants.REJECT_QUESTION,
-					id:id
+					id:id,
+					approvalStatus: constants.QUESTION_REJECTED
 				})
 			}).catch(function(error) {
 				console.log('error', error)

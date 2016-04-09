@@ -34,10 +34,12 @@ export default class Admin extends React.Component {
   }
 
   render() {
-   var _this = this;
-    var approved = false;
+    var _this = this;
     var questions = this.props.questions.map(function(q, index) {
-    var answer = q.editingAnswer ?
+      var approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
+ 
+
+      var answer = q.editingAnswer ?
               //editing answer state
                 <div>
                 <input type = "text" placeholder = "Answer Question" defaultValue = {_this.props.questions[index].answer} value = {_this.state.answers[index]} onChange = {_this.updateAnswer.bind(_this, index)} />
@@ -54,7 +56,7 @@ export default class Admin extends React.Component {
                 </div>;
           
       return (
-          <div className={classnames(styles.questionBox, styles["approved-true"])} data-index={index} key={index}>
+          <div className={classnames(styles.questionBox, styles[approved, "admin"])} data-index={index} key={index}>
             <h3 className = {styles.title}>{q.title}</h3>
             <div className = {styles.submitTime}> {q.submitTime}</div>
             {answer}                       

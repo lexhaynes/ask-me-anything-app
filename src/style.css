@@ -35,14 +35,22 @@ button {
 	border:dotted green 1px;
 }
 
+
+
 .approved-false { 
 	.title,
 	.submitTime,
+	.answer,
 	.submitter,
 	.upvotes,
 	.options {
 		color:#ccc;
 	}
+}
+.admin.approved-false { 
+
+	border:solid red 1px;
+	
 }
 
 

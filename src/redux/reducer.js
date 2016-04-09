@@ -14,6 +14,7 @@ let reducer = function(state, action) {
 						submitter: q.submitter,
 						upvotes: q.upvotes,
 						answer: q.answer,
+						photo: q.photo,
 						editingAnswer: q.editingAnswer,
 						approvalStatus: q.approvalStatus,
 						id: q._id
@@ -90,7 +91,7 @@ let reducer = function(state, action) {
 		case constants.APPROVE_QUESTION: 
 			return Object.assign({}, state, {
 		        questions: state.questions.map((q) => {
-		          return q._id === action.id ? 
+		          return q.id === action.id ? 
 		            Object.assign({}, q, {
 		            	approvalStatus: action.approvalStatus
 		            }) : q
@@ -100,8 +101,8 @@ let reducer = function(state, action) {
 		//do more to update state here...
 		case constants.REJECT_QUESTION: 
 			return Object.assign({}, state, {
-		        questions: state.questions.map((q, index) => {
-		          return index === action.index ? 
+		        questions: state.questions.map((q) => {
+		          return q.id === action.id ? 
 		            Object.assign({}, q, {
 		            	approvalStatus: action.approvalStatus
 		            }) : q

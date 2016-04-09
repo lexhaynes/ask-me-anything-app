@@ -1,7 +1,8 @@
 import React from "react"
+import { browserHistory } from 'react-router'
 import classnames from 'classnames'
 //MUI
-import ThemeManager from 'material-ui/lib/styles/getMuiTheme';
+import ThemeManager from 'material-ui/lib/styles/getMuiTheme'
 import Theme from './Theme.js'
 //MUI Components
 import AppBar from 'material-ui/lib/app-bar'
@@ -24,6 +25,10 @@ const PageTemplate = React.createClass({
     }
   },
 
+  adminLogin() {
+    browserHistory.push('/admin');
+  },
+
   getChildContext() {
     return {
       muiTheme: ThemeManager(Theme),
@@ -42,21 +47,28 @@ const PageTemplate = React.createClass({
     </IconButton>
 
     var iconMenu =  <IconMenu iconButtonElement = {menu} >     
-          <MenuItem primaryText = "hello" />
-          <MenuItem primaryText = "two" />
-          <MenuItem primaryText = "three" />
+          <MenuItem 
+            primaryText = "Admin Login"
+            onTouchTap = {this.adminLogin} 
+          />
+          <MenuItem primaryText = "Create Account" />
+          <MenuItem primaryText = "Settings" />
       </IconMenu>;
 
     return (        
       <div className="page-content">
 
-      {/* PAGE CONTENT  */}
-      <AppBar 
-        iconElementLeft = {iconMenu}
-        onLeftIconButtonTouchTap = {this.toggleNav}
-      />
- 
-        {this.props.content}
+        {/* PAGE CONTENT  */}
+        <AppBar 
+          iconElementLeft = {iconMenu}
+          onLeftIconButtonTouchTap = {this.toggleNav}
+        />
+
+        <div className= "container">
+   
+          {this.props.content}
+
+        </div>
 
       </div>
     )

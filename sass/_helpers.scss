@@ -1,6 +1,4 @@
-.block {
-	display:block;
-}
+
 .table {
 	display:table;
 }
@@ -16,53 +14,10 @@
 .no-padding {padding:0 !important;}
 
 
-@mixin vertical-align {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
 
-@mixin circle($width, $color) {
-	border-radius: 50%;
-	width: $width;
-	height: $width;
-	background-color:$color;
-}
-
-@mixin rect($width, $height, $color) {
-	width: $width;
-	height: $height;
-	background-color:$color;
-	border-radius:2px;
-}
-
-@mixin borderRadius($radius) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  border-radius: $radius;
-  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
-}
-
-@mixin placeholder($color) {
-	::-webkit-input-placeholder {
-	   color: $color;
-	   opacity:0.75;
-	}
-
-	:-moz-placeholder { /* Firefox 18- */
-	   color: $color;  
-	    opacity:0.75;
-	}
-
-	::-moz-placeholder {  /* Firefox 19+ */
-	   color: $color;  
-	    opacity:0.75;
-	}
-
-	:-ms-input-placeholder {  
-	   color: $color;  
-	    opacity:0.75;
-	}
+@mixin mobile-container {
+	width: $mobile-container-width;
+	margin:0 auto;
 }
 
 @mixin transition($speed, $attribute, $easing:"") {
@@ -72,31 +27,3 @@
     -webkit-transition: $speed unquote($easing) $attribute;
     transition: $speed unquote($easing) $attribute;
 }
-
-@mixin pulse ($duration) {
-	@keyframes pulse {
-	0% {   
-        transform: scale(1);
-        -webkit-transform: scale(1);
-    }
-    25% {   
-        transform: scale(1.25);
-        -webkit-transform: scale(1.25);
-    }
-    100% {   
-        transform: scale(1);
-        -webkit-transform: scale(1);
-    }
-}
-
-	        animation: pulse $duration ease;
-        -webkit-animation: pulse $duration ease;
-        animation-iteration-count: $duration;
-        -webkit-animation-iteration-count: $duration;
- }   
-
- @mixin shadow() {
- 		-webkit-box-shadow: 0px 1px 2px 0px rgba(107, 109, 109, 0.9);
-	-moz-box-shadow: 0px 1px 2px 0px rgba(107, 109, 109, 0.9);
-	box-shadow: 0px 1px 2px 0px rgba(107, 109, 109, 0.9);
- }

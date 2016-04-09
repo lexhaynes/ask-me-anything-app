@@ -1,5 +1,4 @@
 import React from "react"
-import { browserHistory } from 'react-router';
 import classnames from 'classnames'
 //redux
 import { connect } from 'react-redux'
@@ -10,6 +9,12 @@ import constants from '../redux/constants'
 //components
 import PageTemplate from '../components/PageTemplate'
 import QuestionForm from '../components/QuestionForm'
+import SubjectProfile from '../components/SubjectProfile'
+//MUI Components
+import Paper from 'material-ui/lib/paper' 
+import RaisedButton from 'material-ui/lib/raised-button' 
+import FloatingActionButton from 'material-ui/lib/floating-action-button'
+import TextField from 'material-ui/lib/text-field' 
 
 
 export default class Home extends React.Component {
@@ -18,11 +23,11 @@ export default class Home extends React.Component {
     props.actions.displayQuestions();
     this.state = {
       questionFormVisibility: "hidden",
-      questions: [""]
+      questions: [""],
+      fabIcon: "fa fa-plus",
+      fabClicked: false
     }
-    this.showQuestionForm = this.showQuestionForm.bind(this);
-    this.hideQuestionForm = this.hideQuestionForm.bind(this);
-    this.updateQuestion = this.updateQuestion.bind(this);
+    this.toggleQuestionForm = this.toggleQuestionForm.bind(this);
   }
   updateQuestion(index, e) {
       var updated = this.props.questions.map(function(q, i) {
@@ -33,61 +38,80 @@ export default class Home extends React.Component {
     })
   }
 
-  adminLogin() {
-    browserHistory.push('/admin');
+  toggleQuestionForm() {
+    if (!this.state.fabClicked) {
+        this.setState({
+          fabClicked: true,
+          fabIcon: "fa fa-times",
+          questionFormVisibility: "block"
+      })
+    }
+    else {
+      this.setState({
+        fabClicked: false,
+        fabIcon: "fa fa-plus",
+        questionFormVisibility: "hidden"
+      })
   }
+}
 
-  showQuestionForm() {
-    this.setState({
-      questionFormVisibility: "block"
-    })
-  }
-  hideQuestionForm() {
-    this.setState({
-      questionFormVisibility: "hidden"
-    })
-  }
 
   render() {
     var _this = this;
     var approved = false;
+
     var questions = this.props.questions.map(function(q, index) {
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
           var question = q.editingQuestion ?
               //editing question state
                 <div>
-                <input type = "text" placeholder = "Ask Question" defaultValue = {_this.props.questions[index].title} value = {_this.state.questions[index]} onChange = {_this.updateQuestion.bind(_this, index)} />
-                <button 
-                  className={"button"} 
-                  onClick={_this.props.actions.updateQuestion.bind(_this, q.id,  _this.state.questions[index])}>Submit</button>
+                <TextField 
+                  hintText = "Ask Question" 
+                  defaultValue = {_this.props.questions[index].title} 
+                  value = {_this.state.questions[index]}
+                  onChange = {_this.updateQuestion.bind(_this, index)}
+                  multiline = {true}
+                  fullWidth = {true}
+                />
+               
+                <br />
+                <RaisedButton 
+                  onClick={_this.props.actions.updateQuestion.bind(_this, q.id,  _this.state.questions[index])}
+                  label = "Submit"
+                  primary = {true}
+                />
                 </div>
             : //displaying question state
                 <div>              
-                <h3 className = {"title"}> {q.title}</h3>
-                <button 
-                  className={"button"} 
-                  onClick={_this.props.actions.editQuestion.bind(_this, q.id)}>Edit</button>
+                <h4 className = {"title"}> {q.title}</h4>
+                <i 
+                  className={classnames("clickable", "fa fa-pencil")} 
+                  onClick={_this.props.actions.editQuestion.bind(_this, q.id)}></i>
                 </div>;
 
       return (
-          <div className={classnames("questionBox", approved)} data-index={index} key={index}>
-
+        <Paper 
+          className = {classnames("paper", "questionBox")}
+          key={index} 
+       >
+          <div className={classnames(approved)} data-index={index} key={index}>
             {question}
 
-            <div className = {"submitTime"}> {q.submitTime}</div>
-            <div className = {"answerBox"}>
-              <div className = {"text"}><strong>Answer: </strong>{q.answer}</div>
-            </div>
-            <div className = {"submitter"}>submitted by: {q.submitter}</div>
+            {/*<div className = {"submitTime"}> {q.submitTime}</div>*/}
+            <div className = {"answer"}>{q.answer}</div>
+            <div className = {"submitter"}>{q.submitter}</div>
             <div className = {"upvotes"}>
-              <i className = {classnames("clickable", "fa fa-chevron-up")} onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
-              <i className = {classnames("clickable", "fa fa-chevron-down")} onClick = {_this.props.actions.downvoteQuestion.bind(_this, index)}></i>
-              <div className = {"number"}>{q.upvotes}</div>
+
+              <i className = {classnames("clickable", "fa fa-star")} 
+                onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
+
+              <span className = {"number"}>{q.upvotes}</span>
             </div>
             <div className = {"options"}>
                 <i className = {classnames("clickable", "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
             </div>
-      </div>
+        </div>
+      </Paper>
 
 
       )
@@ -97,20 +121,23 @@ export default class Home extends React.Component {
 
       <PageTemplate content = {
           <div>
-            <p>{this.props.currentState.requestStatus}</p>
-            
-            {questions}
-            
-              <QuestionForm 
+
+            <QuestionForm 
                 display = {this.state.questionFormVisibility} 
                 closeForm = {this.hideQuestionForm} 
               />
 
-              <hr />
+            <SubjectProfile />
+            
+            <div className = "questionsContainer">
+            {questions}
+            </div>
+            
               
-              <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
-
-              <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
+              <FloatingActionButton
+                  iconClassName = {classnames("fabIcon", this.state.fabIcon)}
+                  primary = {true}
+                  onClick = {this.toggleQuestionForm} />
             </div>
       } />
     

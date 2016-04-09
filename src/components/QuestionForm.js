@@ -5,6 +5,10 @@ import classnames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from '../redux/actions'
+//MUI
+import AppBar from 'material-ui/lib/app-bar' 
+import Paper from 'material-ui/lib/paper' 
+
 
 export default class QuestionForm extends React.Component {
   //same as getInitialState()
@@ -51,7 +55,11 @@ export default class QuestionForm extends React.Component {
 
   render() {
     return (
-      <div className={classnames("questionForm", this.props.display)}>
+      <div className = {classnames("questionForm", this.props.display)}>
+         <AppBar 
+          iconClassNameLeft = "fa fa-times"
+        />
+      <Paper className={classnames("paper")}>
         <h1>Question Form </h1>
 
        <div>
@@ -86,6 +94,7 @@ export default class QuestionForm extends React.Component {
 
         <button onClick = {this.props.closeForm}>Close</button>
 
+      </Paper> 
       </div>
     );
   }

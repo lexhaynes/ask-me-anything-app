@@ -9,7 +9,7 @@ export default {
   zIndex: zIndex,
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: Colors.indigo500,
+    primary1Color: Colors.indigo900,
     primary2Color: Colors.white,
     primary3Color: Colors.lightBlack,
     accent1Color: Colors.pinkA200,

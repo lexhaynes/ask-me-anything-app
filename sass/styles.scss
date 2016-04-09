@@ -38,17 +38,99 @@ h1, h2, h3, h4, h5, h6, div, p, span, button {
 	font-family: $font;
 }
 
+h1, h2 {
+	font-weight:500;
+}
+
+
+p {
+	font-size: 0.85em;
+    line-height: 2em;
+}
+
 .fa {
 	font-size:20px;
 }
 
 /*================ Common ============*/
 
+.container {
+	@include mobile-container;
+	@media (min-width:$desktop) {
+		width: $desktop;
+		margin:0 auto;
+	}
+
+}
+
+.paper {
+	display: inline-block;
+    padding:16px 32px 32px 32px;
+    width: 100%;
+    margin: 16px auto;
+}
+
 
 /*================ Home ============*/
 
+.subjectProfile {
+	@include mobile-container;
+	width:100%;
+	margin:50px auto;
+	@media (min-width:$desktop) {
+		width: 75%
+	}
+}
 
+.questionsContainer {
+	margin: 0 auto;
+}
 
+.questionBox {
+    @media (min-width:$desktop) {
+    	width:46%;
+    	margin: 16px;
+	}
+}
+
+/* Question Box */
+h4.title {
+	font-weight:500;
+	margin:0;
+}
+
+.submitter {
+	color:$primary-light;
+	font-weight:300;
+}
+
+.fa-star {
+	@include transition(.05s, color, linear);
+	color:$primary-light;
+	&:hover {
+		color:#F8E71C
+	}
+}
+
+.number {
+	color:$primary-light;
+	padding:0 4px;
+}
+
+/* Question Form */
+.questionForm {
+    position: absolute;
+    top: -250px;
+    left: 0;
+    width:100%;
+    @include transition(0.5s, top, linear);
+    &.hidden {
+    	 top: -250px;
+    }
+    &.block {
+    	top:150px;
+    }
+}
 
 
 /*================ Admin ============*/

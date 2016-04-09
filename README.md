@@ -1,4 +1,4 @@
-##AMA Live Question and Answer app
+##AMA Question and Answer app
 
 - Reddit AMA-style question-and-answer app built with React
 - implements Redux for state management

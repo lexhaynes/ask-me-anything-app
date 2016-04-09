@@ -12,12 +12,18 @@ import configureStore from './redux/store'
 import { Provider } from 'react-redux'
 import initialState from './redux/initialState'
 
+//for material-ui
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+
 
 // ID of the DOM element to mount app on
 const DOM_ID = 'app'
 
 //redux store
 let store = configureStore(initialState())
+
+injectTapEventPlugin();
 
 // Render the router
 ReactDOM.render((

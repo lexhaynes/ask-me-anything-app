@@ -10,7 +10,7 @@ let reducer = function(state, action) {
 				questions: action.questions.map((q) => {
 					return {
 			        	title: q.title,
-						submitTime: q.submitTime,
+						submitTime: q.submitTime || q.created_at,
 						submitter: q.submitter,
 						upvotes: q.upvotes,
 						answer: q.answer,

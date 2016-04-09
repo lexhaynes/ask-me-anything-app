@@ -1,7 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import classnames from 'classnames'
-import styles from "../style.css"
 //redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -52,7 +51,7 @@ export default class QuestionForm extends React.Component {
 
   render() {
     return (
-      <div className={classnames(styles.questionForm, styles[this.props.display])}>
+      <div className={classnames("questionForm", this.props.display)}>
         <h1>Question Form </h1>
 
        <div>

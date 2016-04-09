@@ -11,7 +11,6 @@ body {
     padding:0;
 	margin:0;
 	font-family:$font;
-	border:dotted 1px #ccc;
 }
 
 
@@ -35,6 +34,10 @@ body {
 
 
 /*================ Typography ============*/
+
+h1, h2, h3, h4, h5, h6, div, p, span, button {
+	font-family: $font;
+}
 
 .fa {
 	font-size:20px;

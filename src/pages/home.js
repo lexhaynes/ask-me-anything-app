@@ -1,5 +1,4 @@
 import React from "react"
-import styles from "../style.css"
 import { browserHistory } from 'react-router';
 import classnames from 'classnames'
 //redux
@@ -56,34 +55,34 @@ export default class Home extends React.Component {
                 <div>
                 <input type = "text" placeholder = "Ask Question" defaultValue = {_this.props.questions[index].title} value = {_this.state.questions[index]} onChange = {_this.updateQuestion.bind(_this, index)} />
                 <button 
-                  className={styles.button} 
+                  className={"button"} 
                   onClick={_this.props.actions.updateQuestion.bind(_this, q.id,  _this.state.questions[index])}>Submit</button>
                 </div>
             : //displaying question state
                 <div>              
-                <h3 className = {styles.title}> {q.title}</h3>
+                <h3 className = {"title"}> {q.title}</h3>
                 <button 
-                  className={styles.button} 
+                  className={"button"} 
                   onClick={_this.props.actions.editQuestion.bind(_this, q.id)}>Edit</button>
                 </div>;
 
       return (
-          <div className={classnames(styles.questionBox, styles[approved])} data-index={index} key={index}>
+          <div className={classnames("questionBox", approved)} data-index={index} key={index}>
 
             {question}
 
-            <div className = {styles.submitTime}> {q.submitTime}</div>
-            <div className = {styles.answerBox}>
-              <div className = {styles.text}><strong>Answer: </strong>{q.answer}</div>
+            <div className = {"submitTime"}> {q.submitTime}</div>
+            <div className = {"answerBox"}>
+              <div className = {"text"}><strong>Answer: </strong>{q.answer}</div>
             </div>
-            <div className = {styles.submitter}>submitted by: {q.submitter}</div>
-            <div className = {styles.upvotes}>
-              <i className = {classnames(styles.clickable, "fa fa-chevron-up")} onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
-              <i className = {classnames(styles.clickable, "fa fa-chevron-down")} onClick = {_this.props.actions.downvoteQuestion.bind(_this, index)}></i>
-              <div className = {styles.number}>{q.upvotes}</div>
+            <div className = {"submitter"}>submitted by: {q.submitter}</div>
+            <div className = {"upvotes"}>
+              <i className = {classnames("clickable", "fa fa-chevron-up")} onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
+              <i className = {classnames("clickable", "fa fa-chevron-down")} onClick = {_this.props.actions.downvoteQuestion.bind(_this, index)}></i>
+              <div className = {"number"}>{q.upvotes}</div>
             </div>
-            <div className = {styles.options}>
-                <i className = {classnames(styles.clickable, "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
+            <div className = {"options"}>
+                <i className = {classnames("clickable", "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
             </div>
       </div>
 
@@ -92,17 +91,23 @@ export default class Home extends React.Component {
     })
 
     return (
-      <div className={styles.content}>
+      <div>
+
+        <header>Header</header>
+
         <h1>{this.props.currentState.requestStatus}</h1>
         {questions}
         
-          <QuestionForm display = {this.state.questionFormVisibility} closeForm = {this.hideQuestionForm} />
+          <QuestionForm 
+            display = {this.state.questionFormVisibility} 
+            closeForm = {this.hideQuestionForm} 
+          />
 
           <hr />
           
-          <button className = {styles.button} onClick = {this.showQuestionForm}>Ask Question</button>
+          <button className = {"button"} onClick = {this.showQuestionForm}>Ask Question</button>
 
-          <button className = {styles.button} onClick = {this.adminLogin}>Admin Login</button>
+          <button className = {"button"} onClick = {this.adminLogin}>Admin Login</button>
 
       </div>
     );

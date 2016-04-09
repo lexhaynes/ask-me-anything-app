@@ -24,8 +24,7 @@ body {
   margin: 0 0 60px;
   padding: 0;
   margin: 0;
-  font-family: "Raleway", "sans-serif";
-  border: dotted 1px #ccc; }
+  font-family: "Raleway", "sans-serif"; }
 
 /*================ Helpers ============*/
 .clickable {
@@ -36,6 +35,9 @@ body {
   min-width: 100%; }
 
 /*================ Typography ============*/
+h1, h2, h3, h4, h5, h6, div, p, span, button {
+  font-family: "Raleway", "sans-serif"; }
+
 .fa {
   font-size: 20px; }
 

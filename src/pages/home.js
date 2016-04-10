@@ -15,6 +15,7 @@ import Paper from 'material-ui/lib/paper'
 import RaisedButton from 'material-ui/lib/raised-button' 
 import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import TextField from 'material-ui/lib/text-field' 
+import LeftNav from 'material-ui/lib/left-nav'
 
 
 export default class Home extends React.Component {
@@ -22,10 +23,8 @@ export default class Home extends React.Component {
     super(props);
     props.actions.displayQuestions();
     this.state = {
-      questionFormVisibility: "hidden",
+      questionFormVisibility: false,
       questions: [""],
-      fabIcon: "fa fa-plus",
-      fabClicked: false
     }
     this.toggleQuestionForm = this.toggleQuestionForm.bind(this);
   }
@@ -39,18 +38,14 @@ export default class Home extends React.Component {
   }
 
   toggleQuestionForm() {
-    if (!this.state.fabClicked) {
+    if (this.state.questionFormVisibility === false) {
         this.setState({
-          fabClicked: true,
-          fabIcon: "fa fa-times",
-          questionFormVisibility: "block"
+          questionFormVisibility: true,
       })
     }
     else {
       this.setState({
-        fabClicked: false,
-        fabIcon: "fa fa-plus",
-        questionFormVisibility: "hidden"
+        questionFormVisibility: false,
       })
   }
 }
@@ -126,12 +121,16 @@ export default class Home extends React.Component {
       <PageTemplate content = {
           <div>
 
-            <QuestionForm 
-                display = {this.state.questionFormVisibility} 
-                closeForm = {this.toggleQuestionForm} 
-              />
-
             <LeftNav
+              className = "leftNav"
+              docked = {false}
+              open = {this.state.questionFormVisibility}
+              onRequestChange={this.toggleQuestionForm}
+              width = {450}
+              openRight = {true}
+            >
+              <QuestionForm />
+            </LeftNav>
 
             <SubjectProfile />
             
@@ -142,7 +141,7 @@ export default class Home extends React.Component {
              
             <div className = "fixed-right">
               <FloatingActionButton
-                  iconClassName = {this.state.fabIcon}
+                  iconClassName = "fa fa-plus"
                   primary = {true}
                   onClick = {this.toggleQuestionForm} />
             </div>

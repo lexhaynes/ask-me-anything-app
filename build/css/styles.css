@@ -128,38 +128,29 @@ h4.title {
 
 /* Question Form */
 .questionForm {
-  position: fixed;
-  z-index: 1200;
-  top: -350px;
-  left: 0;
-  width: 100%;
+  padding: 50px 0 30px 25px;
+  width: 90%;
   -o-transition: 0.15s linear top;
   -ms-transition: 0.15s linear top;
   -moz-transition: 0.15s linear top;
   -webkit-transition: 0.15s linear top;
   transition: 0.15s linear top; }
-  .questionForm.hidden {
-    top: -350px; }
-  .questionForm.block {
-    top: 0; }
-  .questionForm .paper {
-    margin-top: 0;
-    padding: 40px 40px 50px 40px; }
   .questionForm .fa {
     padding-right: 20px;
     color: #ccc; }
 
 /*================ Admin ============*/
-.admin {
-  opacity: 1; }
-  .admin .button {
-    margin: 10px 16px 10px 0; }
-  .admin .upvotes {
-    margin: 10px 0; }
-  .admin .number {
-    padding: 0; }
-  .admin.questionsContainer {
-    margin-top: 50px; }
+.admin .button {
+  margin: 10px 16px 10px 0; }
+
+.admin .upvotes {
+  margin: 10px 0; }
+
+.admin .number {
+  padding: 0; }
+
+.admin.questionsContainer {
+  margin-top: 50px; }
 
 .approval-rejected {
   visibility: hidden;

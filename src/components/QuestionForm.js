@@ -60,17 +60,12 @@ export default class QuestionForm extends React.Component {
   render() {
     var _this = this;
     return (
-      <div className = {classnames("questionForm", this.props.display)}>
-         <AppBar 
-          iconClassNameLeft = "fa fa-times"
-          onLeftIconButtonTouchTap = {this.props.closeForm}
-        />
-      <Paper className={classnames("paper")}>
+      <div className = "questionForm">
 
        <div>
         <i className = "fa fa-question-circle"></i>
           <TextField 
-            hintText = "Ask a question" 
+            hintText = "Ask a Question..." 
             multiline = {true}
             value = {this.state.title}
             onChange = {this.updateTitle}
@@ -87,6 +82,7 @@ export default class QuestionForm extends React.Component {
             value = {this.state.submitter}
             onChange = {this.updateSubmitter}
             onKeyDown = {this.blur}
+            style = {{width:"90%"}}
           />
         </div>
         <RaisedButton
@@ -99,8 +95,6 @@ export default class QuestionForm extends React.Component {
             this.state.submitTime, 
             this.state.submitter
           )} />
-
-      </Paper> 
       </div>
     );
   }

@@ -47,6 +47,8 @@ export default class Admin extends React.Component {
         approved = "approved";
       } else if (q.approvalStatus == "QUESTION_REJECTED") {
         approved = "approval-rejected"
+      } else {
+        approved = "approval-pending";
       }
 
         console.log(q.approvalStatus)

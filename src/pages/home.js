@@ -131,6 +131,8 @@ export default class Home extends React.Component {
                 closeForm = {this.toggleQuestionForm} 
               />
 
+            <LeftNav
+
             <SubjectProfile />
             
             <div className = "questionsContainer">

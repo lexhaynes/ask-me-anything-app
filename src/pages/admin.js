@@ -51,8 +51,6 @@ export default class Admin extends React.Component {
         approved = "approval-pending";
       }
 
-        console.log(q.approvalStatus)
-      console.log(approved);
   
       var answerLabel = _this.props.questions[index].answer === "" ? "Answer Question" : "Edit Answer";
 

@@ -46,7 +46,9 @@ const PageTemplate = React.createClass({
     />;
     </IconButton>
 
-    var iconMenu =  <IconMenu iconButtonElement = {menu} >     
+    var iconMenu =  
+    <IconMenu 
+      iconButtonElement = {menu}>
           <MenuItem 
             primaryText = "Admin Login"
             onTouchTap = {this.adminLogin} 

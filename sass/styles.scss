@@ -73,6 +73,21 @@ p {
 
 /*================ Home ============*/
 
+/*Search*/
+
+#searchField {
+	float:left;
+	color:#fff !important;
+	.fa-search {
+		fill:$inverted;
+		color:$inverted;
+	}
+
+}
+
+
+/*Subject Proufle*/
+
 .subjectProfile {
 	@include mobile-container;
 	width:100%;
@@ -82,10 +97,14 @@ p {
 	}
 }
 
+/*Questions Container*/
+
 .questionsContainer {
 	margin: 0 auto 80px auto;
 }
 
+
+/* Question Box */
 .questionBox {
     @media (min-width:$desktop) {
     	&.admin {
@@ -96,7 +115,6 @@ p {
 	}
 }
 
-/* Question Box */
 h4.title {
 	font-weight:500;
 	margin:0;
@@ -146,6 +164,8 @@ h4.title {
     	color:$primary-light;
     }
 }
+
+
 
 
 /*================ Admin ============*/

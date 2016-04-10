@@ -74,6 +74,15 @@ p {
   margin: 16px auto; }
 
 /*================ Home ============*/
+/*Search*/
+#searchField {
+  float: left;
+  color: #fff !important; }
+  #searchField .fa-search {
+    fill: #fff;
+    color: #fff; }
+
+/*Subject Proufle*/
 .subjectProfile {
   width: 96%;
   margin: 0 auto;
@@ -83,9 +92,11 @@ p {
     .subjectProfile {
       width: 75%; } }
 
+/*Questions Container*/
 .questionsContainer {
   margin: 0 auto 80px auto; }
 
+/* Question Box */
 @media (min-width: 1000px) {
   .questionBox {
     width: 46%;
@@ -93,7 +104,6 @@ p {
     .questionBox.admin {
       width: 100%; } }
 
-/* Question Box */
 h4.title {
   font-weight: 500;
   margin: 0;

@@ -16,6 +16,7 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import TextField from 'material-ui/lib/text-field' 
 import LeftNav from 'material-ui/lib/left-nav'
+import IconButton from 'material-ui/lib/icon-button'
 
 
 export default class Home extends React.Component {
@@ -116,9 +117,23 @@ export default class Home extends React.Component {
       )
     })
 
+    var searchButton =
+  
+    <IconButton
+      iconClassName = "fa fa-search"
+    />
+    
+    <TextField 
+      hintText="Search" />
+
+    
+
     return (
 
-      <PageTemplate content = {
+      <PageTemplate 
+      elementRight = {searchButton}
+      elementRightClick = {this.toggleSearch}
+      content = {
           <div>
 
             <LeftNav
@@ -130,6 +145,14 @@ export default class Home extends React.Component {
               openRight = {true}
             >
               <QuestionForm />
+
+              <div className = "fixed-right">
+              <FloatingActionButton
+                  iconClassName = "fa fa-times"
+                  primary = {true}
+                  onClick = {this.toggleQuestionForm} />
+              </div>
+            
             </LeftNav>
 
             <SubjectProfile />

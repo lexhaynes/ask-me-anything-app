@@ -73,6 +73,9 @@ p {
   width: 100%;
   margin: 16px auto; }
 
+.disabled {
+  color: #ccc; }
+
 /*================ Home ============*/
 /*Search*/
 /*not sure why have to !important these; styles getting overwritten somehow*/
@@ -105,6 +108,9 @@ p {
   .questionBox {
     width: 46%;
     margin: 16px; } }
+
+.questionBox .approved-false * {
+  color: #ccc; }
 
 h4.title {
   font-weight: 500;

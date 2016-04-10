@@ -17,7 +17,14 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import TextField from 'material-ui/lib/text-field' 
 import IconButton from 'material-ui/lib/icon-button'
-
+//CARD
+//Card
+import Card from 'material-ui/lib/card/card';
+import CardActions from 'material-ui/lib/card/card-actions';
+import CardHeader from 'material-ui/lib/card/card-header';
+import CardTitle from 'material-ui/lib/card/card-title';
+import FlatButton from 'material-ui/lib/flat-button';
+import CardText from 'material-ui/lib/card/card-text';
 
 
 
@@ -30,6 +37,7 @@ export default class Home extends React.Component {
       questions: [""],
     }
     this.toggleQuestionForm = this.toggleQuestionForm.bind(this);
+
   }
   updateQuestion(index, e) {
       var updated = this.props.questions.map(function(q, i) {
@@ -53,73 +61,103 @@ export default class Home extends React.Component {
   }
 }
 
+getRandomImg() {
+  var categories =[
+    "abstract",
+    "animals",
+    "business",
+    "cats",
+    "city",
+    "food",
+    "nightlife",
+    "fashion",
+    "people",
+    "nature",
+    "sports",
+    "technics",
+    "transport"
+  ]
+   var max = categories.length, 
+       min = 0;
+
+  return categories[Math.floor(Math.random() * (max - min)) + min];
+}
+
 
   render() {
     var _this = this;
     var approved = false;
     //we're iterating through an on-the-fly created copy of state
     var questions = this.props.filtered.map(function(q, index) {
+      var randomImg = _this.getRandomImg();
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
           var question = q.editingQuestion ?
               //editing question state
                 <div>
                 <TextField 
                   hintText = "Ask Question" 
-                  defaultValue = {_this.props.questions[index].title} 
+                  defaultValue = {q.title || _this.state.questions[index]} 
                   value = {_this.state.questions[index]}
                   onChange = {_this.updateQuestion.bind(_this, index)}
                   multiline = {true}
                   fullWidth = {true}
+                  floatingLabelText = "Edit Question"
                 />
-               
-                <br />
-                <RaisedButton 
-                  onClick={_this.props.actions.updateQuestion.bind(_this, q.id,  _this.state.questions[index])}
-                  label = "Submit"
-                  primary = {true}
-                />
+              
+              <FlatButton 
+              className = "button"
+              onClick={_this.props.actions.updateQuestion.bind(_this, q.id, _this.state.questions[index])} 
+              label  = "Submit"
+              primary = {true}
+            />
+            <FlatButton 
+              className = "button"
+              labelStyle = {{color:"#E24714"}}
+              onClick={_this.props.actions.cancelEditQuestion.bind(_this, q.id)}
+              label  = "Cancel"
+              primary = {true}
+            />
                 </div>
             : //displaying question state
                 <div>              
                 <h4 className = {"title"}> {q.title}</h4>
                 </div>;
-
       return (
-        <Paper 
-          className = {classnames("paper", "questionBox")}
-          key={index} 
-       >
-          <div className={classnames(approved)} data-index={index} key={index}>
-            {question}
 
-            {/*<div className = {"submitTime"}> {q.submitTime}</div>*/}
-            <div className = {"answer"}>{q.answer}</div>
-
+    <Card 
+          data-index={index}
+          className = {classnames("paper", "questionBox", approved)}
+          key={index} >
+    <CardHeader
+      title={q.submitter}
+      subtitle={q.submitTime}
+      avatar={"http://lorempixel.com/100/100/"+randomImg}
+    />
+    <CardTitle 
+      style = {{paddingTop:0, paddingBottom:0}}
+      title={question}
+    />
+    <CardText
+      style = {{paddingTop:0, paddingBottom:0}}
+    >     
+          {q.answer || <div className="disabled">Not yet answered.</div>}
             <div className = "meta">
-              <div className = {classnames("left", "submitter")}>{q.submitter}</div>
-              <div className = {classnames("right", "upvotes")}>
                 <i className = {classnames("clickable", "fa fa-star")} 
                   onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
                 <span className = {"number"}>{q.upvotes}</span>
-              </div>
-              <div className = "clear"></div>
             </div>
-
-            <div className = {"options"}>
-                 <i 
-                  className={classnames("clickable", "fa fa-pencil")} 
+    </CardText>
+    <CardActions>
+        <i className={classnames("clickable", "fa fa-pencil")} 
                   onClick={_this.props.actions.editQuestion.bind(_this, q.id)}></i>
-                
-                <i className = {classnames("clickable", "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
-            </div>
-        </div>
-      </Paper>
+        
+        <i className = {classnames("clickable", "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
+    </CardActions>
+  </Card>
 
 
       )
     })
-
-    console.log('filtered', this.props.filtered)
 
     return (
 
@@ -160,6 +198,7 @@ export default connect(
     questions: state.questions, 
     //here we create a filtered version of state on the fly instead of directly mutating state
     filtered: state.questions.filter((q) => {
+        if (q.title != null) 
         return q.title.toLowerCase().indexOf(state.searchTerm) > -1
     }) 
   }), 

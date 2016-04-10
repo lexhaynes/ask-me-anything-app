@@ -84,6 +84,17 @@ let reducer = function(state, action) {
 	            }) : q
 	        })
 	      })
+
+		case constants.CANCEL_EDIT_QUESTION:
+			console.log('cancel')
+			return Object.assign({}, state, {
+		        questions: state.questions.map((q) => {
+		          return q.id === action.id ? 
+		            Object.assign({}, q, {
+					editingQuestion: action.editingQuestion
+		            }) : q
+		        })
+		      })	
 			 
 
 	case constants.FILTER_QUESTIONS: 

@@ -112,6 +112,14 @@ let actions = {
 		}
 	},
 
+	cancelEditQuestion: function(id) {
+		return {
+			type: constants.CANCEL_EDIT_QUESTION,
+			id: id,
+			editingQuestion: false
+		}
+	},
+
 	editQuestion: function(id) {
 		return {
 			type:constants.EDITING_QUESTION,

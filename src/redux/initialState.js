@@ -8,7 +8,7 @@ export default function() {
 		questions: [{
 				id: 0,
 				approvalStatus: constants.QUESTION_PENDING,
-				title: "Ask me Anything",
+				title: "Ask a question",
 				submitTime: now , //note that we will add a submitTime for local state update, and created_at on db side for when the item is actually posted to db
 				answer:  "",
 				editingAnswer: true,

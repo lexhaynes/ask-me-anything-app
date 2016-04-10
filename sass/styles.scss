@@ -70,6 +70,10 @@ p {
     margin: 16px auto;
 }
 
+.disabled {
+	color:$primary-light;
+}
+
 
 /*================ Home ============*/
 
@@ -114,6 +118,9 @@ p {
     @media (min-width:$desktop) {
     	width:46%;
     	margin: 16px;
+	}
+	.approved-false * {
+		color:$primary-light
 	}
 }
 

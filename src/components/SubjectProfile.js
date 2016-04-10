@@ -11,6 +11,7 @@ import constants from '../redux/constants'
 import TextField from 'material-ui/lib/text-field' 
 import RaisedButton from 'material-ui/lib/raised-button' 
 
+
 /* TODO: LINK THIS COMPONENT TO STATE AND DB SOON*/
 
 export default class SubjectProfile extends React.Component {
@@ -107,7 +108,9 @@ export default class SubjectProfile extends React.Component {
 
     return (
       <div>
+     
       {content}
+      
       </div>
     
     );

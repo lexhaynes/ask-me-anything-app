@@ -8,6 +8,9 @@ import actions from '../redux/actions'
 //MUI
 import AppBar from 'material-ui/lib/app-bar' 
 import Paper from 'material-ui/lib/paper' 
+import TextField from 'material-ui/lib/text-field' 
+import RaisedButton from 'material-ui/lib/raised-button' 
+
 
 
 export default class QuestionForm extends React.Component {
@@ -47,6 +50,7 @@ export default class QuestionForm extends React.Component {
     })
   }
 
+
   blur(e) {
     if (e.keyCode == 13) {
       e.target.blur()
@@ -54,45 +58,47 @@ export default class QuestionForm extends React.Component {
   }
 
   render() {
+    var _this = this;
     return (
       <div className = {classnames("questionForm", this.props.display)}>
          <AppBar 
           iconClassNameLeft = "fa fa-times"
+          onLeftIconButtonTouchTap = {this.props.closeForm}
         />
       <Paper className={classnames("paper")}>
-        <h1>Question Form </h1>
 
        <div>
-          <label> Ask a question: </label>
-          <input 
-            type = "text" 
-            placeholder = "Ask a question" 
+        <i className = "fa fa-question-circle"></i>
+          <TextField 
+            hintText = "Ask a question" 
+            multiline = {true}
             value = {this.state.title}
             onChange = {this.updateTitle}
             onKeyDown = {this.blur}
+            style = {{width:"90%"}}
           />
         </div>
-
+        <br />
         <div>
-          <label> Your name: </label>
-          <input 
-            type = "text" 
-            placeholder = "Your name" 
+          <i className = "fa fa-user"></i>
+
+          <TextField 
+            hintText = "Your name" 
             value = {this.state.submitter}
             onChange = {this.updateSubmitter}
             onKeyDown = {this.blur}
           />
         </div>
-
-        <button
+        <RaisedButton
+          label= "Submit Question"
+          style = {{marginTop: "40px"}}
+          primary = {true}
           onClick = {this.props.actions.submitQuestion.bind(
             this, 
             this.state.title, 
             this.state.submitTime, 
             this.state.submitter
-          )}>Submit</button>
-
-        <button onClick = {this.props.closeForm}>Close</button>
+          )} />
 
       </Paper> 
       </div>

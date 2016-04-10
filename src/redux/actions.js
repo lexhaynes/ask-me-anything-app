@@ -58,6 +58,16 @@ let actions = {
 			return axios.delete(constants.API_QUESTION + id , {
 				type:constants.DELETE_QUESTION,
 				id: id
+			}).then(function() {
+	
+				//query the db again to make sure page live updates
+				axios.get(constants.API_QUESTIONS).then(function(response) {
+					dispatch({
+						type: constants.DISPLAY_QUESTIONS,
+						requestStatus: constants.REQUEST_SUCCESS,
+						questions: response.data	
+					})
+				})
 			}).then(function(response) {
 				dispatch({
 					type:constants.DELETE_QUESTION,

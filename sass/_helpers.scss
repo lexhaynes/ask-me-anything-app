@@ -13,7 +13,15 @@
 
 .no-padding {padding:0 !important;}
 
+.fixed-right {
+	position:fixed;
+	bottom: 50px;
+    right: 50px;
+}
 
+.left {float:left}
+.right {float:right}
+.clear {clear:both}
 
 @mixin mobile-container {
 	width: $mobile-container-width;

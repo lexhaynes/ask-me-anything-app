@@ -8,6 +8,12 @@ import actions from '../redux/actions'
 import initialState from '../redux/initialState'
 import QuestionForm from '../components/QuestionForm'
 import constants from '../redux/constants'
+//MUI
+import PageTemplate from '../components/PageTemplate'
+import Paper from 'material-ui/lib/paper' 
+import RaisedButton from 'material-ui/lib/raised-button' 
+import FlatButton from 'material-ui/lib/flat-button' 
+import TextField from 'material-ui/lib/text-field' 
 
 export default class Admin extends React.Component {  
   constructor(props) {
@@ -34,60 +40,105 @@ export default class Admin extends React.Component {
 
   render() {
     var _this = this;
+    var approved = "approval-pending";
     var questions = this.props.questions.map(function(q, index) {
-      var approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
- 
+    
+      if (q.approvalStatus == "QUESTION_APPROVED") {
+        approved = "approved";
+      } else if (q.approvalStatus == "QUESTION_REJECTED") {
+        approved = "approval-rejected"
+      }
+
+        console.log(q.approvalStatus)
+      console.log(approved);
+  
+      var answerLabel = _this.props.questions[index].answer === "" ? "Answer Question" : "Edit Answer";
 
       var answer = q.editingAnswer ?
               //editing answer state
                 <div>
-                <input type = "text" placeholder = "Answer Question" defaultValue = {_this.props.questions[index].answer} value = {_this.state.answers[index]} onChange = {_this.updateAnswer.bind(_this, index)} />
-                <button 
-                  className={"button"} 
-                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id,  _this.state.answers[index])}>Submit</button>
+                <TextField
+                   hintText = "Answer Question" 
+                   defaultValue = {_this.props.questions[index].answer} 
+                   value = {_this.state.answers[index]} 
+                   fullWidth = {true}
+                   onChange = {_this.updateAnswer.bind(_this, index)} 
+                />
+                  <RaisedButton
+                  className = "button"
+                  label = "Submit"
+                  primary = {true}
+                  onClick={_this.props.actions.submitAnswer.bind(_this, q.id,  _this.state.answers[index])} />
                 </div>
             : //displaying answer state
                 <div>              
                 <div className = {"text"}> {q.answer}</div>
-                <button 
-                  className={"button"} 
-                  onClick={_this.props.actions.editAnswer.bind(_this, q.id)}>Edit</button>
+                <RaisedButton 
+                  className = "button"
+                  primary = {true}
+                  label = {answerLabel}
+                  onClick={_this.props.actions.editAnswer.bind(_this, q.id)} />
                 </div>;
           
       return (
-          <div className={classnames("questionBox", approved, "admin")} data-index={index} key={index}>
-            <h3 className = {"title"}>{q.title}</h3>
-            <div className = {"submitTime"}> {q.submitTime}</div>
-            {answer}                       
-            <div className = {"submitter"}>submitted by: {q.submitter}</div>
+        <Paper 
+          className = {classnames("paper", "questionBox", "admin", approved)}
+          key={index}
+          data-index={index} 
+          key={index} >
+         
+            <h3 className = {"title"}>{q.title}</h3>                      
+            <div className = {"submitter"}>Submitted by: {q.submitter}</div>
             <div className = {"upvotes"}>
               <div className = {"number"}>Upvotes: {q.upvotes}</div>
             </div>
          
+              {answer} 
+
           <div>       
-            <button className={"button"} onClick={_this.props.actions.approveQuestion.bind(_this, q.id)}>Approve</button>
-            <button className={"button"} onClick={_this.props.actions.rejectQuestion.bind(_this, q.id)}>Reject</button>
+            <FlatButton 
+              className = "button"
+              labelStyle = {{color:"#51BB05"}}
+              onClick={_this.props.actions.approveQuestion.bind(_this, q.id)} 
+              label  = "Approve"
+              primary = {true}
+            />
+            <FlatButton 
+              className = "button"
+              labelStyle = {{color:"#E24714"}}
+              onClick={_this.props.actions.rejectQuestion.bind(_this, q.id)}
+              label  = "Reject"
+              primary = {true}
+            />
           </div>
-      </div>
+      </Paper>
 
 
       )
     })
 
+    var home =  <FlatButton 
+              onClick={this.home}
+              label  = "Home"
+              primary = {true}
+            />;
+
     return (
-      <div className={"content"}>
-        <h1>Moderate Questions</h1>
-
-        {questions}
-
-        
-        <hr />
-          
-        <button className = {"button"} onClick = {this.home}>Home</button>
-
-
-
-      </div>
+       <PageTemplate 
+       elementRight = {home}
+       elementRightClick = {this.home} 
+       content = {
+          <div className = {classnames("admin", "questionsContainer")}>
+          {questions}  
+        <RaisedButton 
+          className = "button"
+          label  = "Home"
+          primary = {true}
+          onClick = {this.home}
+        />
+        </div>
+      }
+      />
     );
   }
 }

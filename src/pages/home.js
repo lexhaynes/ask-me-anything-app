@@ -84,9 +84,6 @@ export default class Home extends React.Component {
             : //displaying question state
                 <div>              
                 <h4 className = {"title"}> {q.title}</h4>
-                <i 
-                  className={classnames("clickable", "fa fa-pencil")} 
-                  onClick={_this.props.actions.editQuestion.bind(_this, q.id)}></i>
                 </div>;
 
       return (
@@ -99,15 +96,22 @@ export default class Home extends React.Component {
 
             {/*<div className = {"submitTime"}> {q.submitTime}</div>*/}
             <div className = {"answer"}>{q.answer}</div>
-            <div className = {"submitter"}>{q.submitter}</div>
-            <div className = {"upvotes"}>
 
-              <i className = {classnames("clickable", "fa fa-star")} 
-                onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
-
-              <span className = {"number"}>{q.upvotes}</span>
+            <div className = "meta">
+              <div className = {classnames("left", "submitter")}>{q.submitter}</div>
+              <div className = {classnames("right", "upvotes")}>
+                <i className = {classnames("clickable", "fa fa-star")} 
+                  onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
+                <span className = {"number"}>{q.upvotes}</span>
+              </div>
+              <div className = "clear"></div>
             </div>
+
             <div className = {"options"}>
+                 <i 
+                  className={classnames("clickable", "fa fa-pencil")} 
+                  onClick={_this.props.actions.editQuestion.bind(_this, q.id)}></i>
+                
                 <i className = {classnames("clickable", "fa fa-trash")} onClick = {_this.props.actions.deleteQuestion.bind(_this, q.id)}></i>
             </div>
         </div>
@@ -124,7 +128,7 @@ export default class Home extends React.Component {
 
             <QuestionForm 
                 display = {this.state.questionFormVisibility} 
-                closeForm = {this.hideQuestionForm} 
+                closeForm = {this.toggleQuestionForm} 
               />
 
             <SubjectProfile />
@@ -133,11 +137,13 @@ export default class Home extends React.Component {
             {questions}
             </div>
             
-              
+             
+            <div className = "fixed-right">
               <FloatingActionButton
-                  iconClassName = {classnames("fabIcon", this.state.fabIcon)}
+                  iconClassName = {this.state.fabIcon}
                   primary = {true}
                   onClick = {this.toggleQuestionForm} />
+            </div>
             </div>
       } />
     

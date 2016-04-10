@@ -7,7 +7,7 @@ html {
     min-height: 100%;
 }
 body {
-    padding:0;
+    padding:0 0 100px 0;
 	margin:0;
 	font-family:$font;
 }
@@ -83,11 +83,14 @@ p {
 }
 
 .questionsContainer {
-	margin: 0 auto;
+	margin: 0 auto 80px auto;
 }
 
 .questionBox {
     @media (min-width:$desktop) {
+    	&.admin {
+    		width:100%;
+    	}
     	width:46%;
     	margin: 16px;
 	}
@@ -97,6 +100,12 @@ p {
 h4.title {
 	font-weight:500;
 	margin:0;
+	line-height:1.5em;
+	min-height:50px;
+}
+
+.meta {
+	margin:14px 0;
 }
 
 .submitter {
@@ -107,6 +116,7 @@ h4.title {
 .fa-star {
 	@include transition(.05s, color, linear);
 	color:$primary-light;
+	font-size:16px;
 	&:hover {
 		color:#F8E71C
 	}
@@ -114,23 +124,69 @@ h4.title {
 
 .number {
 	color:$primary-light;
-	padding:0 4px;
+	padding:0 8px;
+	font-size:16px;
 }
+
+.options {
+	.fa {
+		padding-right:10px;
+	}
+}
+
 
 /* Question Form */
 .questionForm {
-    position: absolute;
-    top: -250px;
+    position: fixed;
+    z-index: 1200;
+    top: -350px;
     left: 0;
     width:100%;
-    @include transition(0.5s, top, linear);
+    @include transition(0.15s, top, linear);
     &.hidden {
-    	 top: -250px;
+    	 top: -350px;
     }
     &.block {
-    	top:150px;
+    	top:0;
+    }
+    .paper {
+    	margin-top:0;
+    	padding: 40px 40px 50px 40px;
+    }
+    .fa {
+    	padding-right:20px;
+    	color:$primary-light;
     }
 }
 
 
 /*================ Admin ============*/
+
+.admin {
+	.button {
+		margin:10px 16px 10px 0;
+	}
+	.upvotes {
+		margin:10px 0;
+	}
+	.number {
+		padding:0
+	}
+	&.questionsContainer {
+		margin-top:50px;
+	}
+	opacity: 1;
+}	
+
+.approved {
+}
+
+
+.approval-rejected {
+  visibility:hidden;
+  position: absolute;
+  opacity: 0;
+  transition: position 0s, visibility 0s, opacity 0.75s, ease-in-out;
+	
+}
+

@@ -62,6 +62,8 @@ const PageTemplate = React.createClass({
         <AppBar 
           iconElementLeft = {iconMenu}
           onLeftIconButtonTouchTap = {this.toggleNav}
+          iconElementRight = {this.props.elementRight}
+          onRightIconButtonTouchTap = {this.props.elementRightClick}
         />
 
         <div className= "container">

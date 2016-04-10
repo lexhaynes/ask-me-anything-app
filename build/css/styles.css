@@ -136,18 +136,10 @@ h4.title {
 .options .fa {
   padding-right: 10px; }
 
-/* Question Form */
-.questionForm {
-  padding: 50px 0 30px 25px;
-  width: 90%;
-  -o-transition: 0.15s linear top;
-  -ms-transition: 0.15s linear top;
-  -moz-transition: 0.15s linear top;
-  -webkit-transition: 0.15s linear top;
-  transition: 0.15s linear top; }
-  .questionForm .fa {
-    padding-right: 20px;
-    color: #ccc; }
+/* Question Form Icons */
+.questionForm .fa {
+  padding-right: 20px;
+  color: #ccc; }
 
 /*================ Admin ============*/
 .admin .button {

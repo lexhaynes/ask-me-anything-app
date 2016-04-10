@@ -19,6 +19,8 @@ import LeftNav from 'material-ui/lib/left-nav'
 import IconButton from 'material-ui/lib/icon-button'
 
 
+
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -117,16 +119,14 @@ export default class Home extends React.Component {
       )
     })
 
-    var searchButton =
-  
-    <IconButton
-      iconClassName = "fa fa-search"
-    />
-    
-    <TextField 
-      hintText="Search" />
-
-    
+    const searchButton = 
+    <div>
+      <IconButton
+        iconClassName = "fa fa-search"
+      />
+      <TextField 
+        hintText="Search" />
+    </div>;
 
     return (
 
@@ -134,40 +134,26 @@ export default class Home extends React.Component {
       elementRight = {searchButton}
       elementRightClick = {this.toggleSearch}
       content = {
-          <div>
+          <div>        
+             <QuestionForm 
+                visibility = {this.state.questionFormVisibility}
+                toggleForm = {this.toggleQuestionForm}
 
-            <LeftNav
-              className = "leftNav"
-              docked = {false}
-              open = {this.state.questionFormVisibility}
-              onRequestChange={this.toggleQuestionForm}
-              width = {450}
-              openRight = {true}
-            >
-              <QuestionForm />
-
-              <div className = "fixed-right">
-              <FloatingActionButton
-                  iconClassName = "fa fa-times"
-                  primary = {true}
-                  onClick = {this.toggleQuestionForm} />
+             />
+              
+              <SubjectProfile />
+              
+              <div className = "questionsContainer">
+              {questions}
               </div>
-            
-            </LeftNav>
-
-            <SubjectProfile />
-            
-            <div className = "questionsContainer">
-            {questions}
-            </div>
-            
-             
-            <div className = "fixed-right">
-              <FloatingActionButton
-                  iconClassName = "fa fa-plus"
-                  primary = {true}
-                  onClick = {this.toggleQuestionForm} />
-            </div>
+              
+               
+              <div className = "fixed-right">
+                <FloatingActionButton
+                    iconClassName = "fa fa-plus"
+                    primary = {true}
+                    onClick = {this.toggleQuestionForm} />
+              </div>
             </div>
       } />
     

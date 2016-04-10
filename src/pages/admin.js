@@ -14,6 +14,13 @@ import Paper from 'material-ui/lib/paper'
 import RaisedButton from 'material-ui/lib/raised-button' 
 import FlatButton from 'material-ui/lib/flat-button' 
 import TextField from 'material-ui/lib/text-field' 
+//MUI tabs
+import Tabs from 'material-ui/lib/tabs/tabs';
+import Tab from 'material-ui/lib/tabs/tab';
+import FontIcon from 'material-ui/lib/font-icon';
+import Theme from './Theme.js'
+
+
 
 export default class Admin extends React.Component {  
   constructor(props) {
@@ -124,21 +131,29 @@ export default class Admin extends React.Component {
             />;
 
     return (
-       <PageTemplate 
-       elementRight = {home}
-       elementRightClick = {this.home} 
-       content = {
-          <div className = {classnames("admin", "questionsContainer")}>
-          {questions}  
-        <RaisedButton 
-          className = "button"
-          label  = "Home"
-          primary = {true}
-          onClick = {this.home}
+      <div>
+       <Tabs
+        
+       >
+        <Tab label="Moderator" >
+              <div className = {classnames("admin", "questionsContainer")}>
+                {questions}  
+              </div>
+        </Tab>
+
+        <Tab label="Interviewee">
+          <div>
+  
+          </div>
+        </Tab>
+
+        <Tab
+          icon={<i className="fa fa-home"></i>}
+          onActive = {this.home} 
         />
-        </div>
-      }
-      />
+    </Tabs>
+
+      </div>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import classnames from 'classnames'
+import moment from 'moment'
 //redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -67,6 +68,7 @@ export default class Home extends React.Component {
     var approved = false;
     //we're iterating through an on-the-fly created copy of state
     var questions = this.props.filtered.map(function(q, index) {
+      var submitTime = moment(q.submitTime).startOf("hour").fromNow();
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
           var question = q.editingQuestion ?
               //editing question state
@@ -107,7 +109,7 @@ export default class Home extends React.Component {
           key={index} >
     <CardHeader
       title={q.submitter}
-      subtitle={q.submitTime}
+      subtitle={"Asked " + submitTime}
       avatar={q.photo}
     />
     <CardTitle 

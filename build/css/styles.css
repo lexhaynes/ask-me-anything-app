@@ -112,6 +112,9 @@ p {
 .questionBox.approved-false * {
   color: #ccc !important; }
 
+.questionBox.approved-false img {
+  opacity: .5; }
+
 h4.title {
   font-weight: 500;
   margin: 0;

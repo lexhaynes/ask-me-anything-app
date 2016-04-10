@@ -122,6 +122,9 @@ p {
 	&.approved-false * {
 		color:$primary-light !important;
 	}
+	&.approved-false img {
+		opacity:.5;
+	}
 }
 
 h4.title {

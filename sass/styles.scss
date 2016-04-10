@@ -107,9 +107,6 @@ p {
 /* Question Box */
 .questionBox {
     @media (min-width:$desktop) {
-    	&.admin {
-    		width:100%;
-    	}
     	width:46%;
     	margin: 16px;
 	}
@@ -165,7 +162,9 @@ h4.title {
 
 
 /*================ Admin ============*/
-
+.admin-content {
+	overflow-x:hidden;
+}
 .admin {
 	.button {
 		margin:10px 16px 10px 0;
@@ -177,7 +176,12 @@ h4.title {
 		padding:0
 	}
 	&.questionsContainer {
-		margin-top:50px;
+		margin:50px auto;
+		width:90%;
+	}
+	&.profile {
+		margin:50px auto;
+		width:90%;
 	}
  }	
 

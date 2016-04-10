@@ -11,15 +11,13 @@ export default {
   palette: {
     primary1Color: Colors.indigo900,
     primary2Color: Colors.white,
-    primary3Color: Colors.lightBlack,
-    accent1Color: Colors.pinkA200,
+    accent1Color: Colors.deepOrange500,
     accent2Color: Colors.grey100,
-    accent3Color: Colors.grey500,
     textColor: Colors.darkBlack,
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
     borderColor: Colors.grey300,
     disabledColor: ColorManipulator.fade(Colors.darkBlack, 0.3),
-    pickerHeaderColor: Colors.cyan500,
+    pickerHeaderColor: Colors.indigo900,
   }
 };

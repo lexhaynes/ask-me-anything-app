@@ -100,9 +100,7 @@ p {
 @media (min-width: 1000px) {
   .questionBox {
     width: 46%;
-    margin: 16px; }
-    .questionBox.admin {
-      width: 100%; } }
+    margin: 16px; } }
 
 h4.title {
   font-weight: 500;
@@ -142,6 +140,9 @@ h4.title {
   color: #ccc; }
 
 /*================ Admin ============*/
+.admin-content {
+  overflow-x: hidden; }
+
 .admin .button {
   margin: 10px 16px 10px 0; }
 
@@ -152,7 +153,12 @@ h4.title {
   padding: 0; }
 
 .admin.questionsContainer {
-  margin-top: 50px; }
+  margin: 50px auto;
+  width: 90%; }
+
+.admin.profile {
+  margin: 50px auto;
+  width: 90%; }
 
 .approval-rejected {
   visibility: hidden;

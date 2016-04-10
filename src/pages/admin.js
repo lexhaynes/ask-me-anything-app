@@ -9,18 +9,13 @@ import initialState from '../redux/initialState'
 import QuestionForm from '../components/QuestionForm'
 import constants from '../redux/constants'
 //MUI
-import PageTemplate from '../components/PageTemplate'
+import AdminTemplate from '../components/AdminTemplate'
 import Paper from 'material-ui/lib/paper' 
 import RaisedButton from 'material-ui/lib/raised-button' 
 import FlatButton from 'material-ui/lib/flat-button' 
 import TextField from 'material-ui/lib/text-field' 
-//MUI tabs
-import Tabs from 'material-ui/lib/tabs/tabs';
-import Tab from 'material-ui/lib/tabs/tab';
-import FontIcon from 'material-ui/lib/font-icon';
-import Theme from './Theme.js'
 
-
+import SubjectProfile from '../components/SubjectProfile'
 
 export default class Admin extends React.Component {  
   constructor(props) {
@@ -124,36 +119,40 @@ export default class Admin extends React.Component {
       )
     })
 
-    var home =  <FlatButton 
-              onClick={this.home}
-              label  = "Home"
-              primary = {true}
-            />;
+    const tabs = {
+      tab1 : {
+        content: <div className = {classnames("admin", "questionsContainer")}>
+                  {questions}  
+                </div>
+      },
+      tab2: {
+        content: <SubjectProfile admin = {true} />
+      },
+      tab3: {
+        icon: <i className="fa fa-home"></i>,
+        onActive: this.home
+      }
+    }
 
     return (
-      <div>
-       <Tabs
-        
-       >
-        <Tab label="Moderator" >
-              <div className = {classnames("admin", "questionsContainer")}>
-                {questions}  
-              </div>
-        </Tab>
+      <AdminTemplate 
 
-        <Tab label="Interviewee">
-          <div>
-  
-          </div>
-        </Tab>
+        tabs = {[
+          {
+            label: "Moderate Questions", 
+            content: tabs.tab1.content
+          },
+          {
+            label: "Profile", 
+            content: tabs.tab2.content
+          },
+          {
+            icon: tabs.tab3.icon,
+            onActive: tabs.tab3.onActive
+          }
+        ]}
 
-        <Tab
-          icon={<i className="fa fa-home"></i>}
-          onActive = {this.home} 
-        />
-    </Tabs>
-
-      </div>
+      />
     );
   }
 }

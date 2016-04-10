@@ -119,8 +119,8 @@ p {
     	width:46%;
     	margin: 16px;
 	}
-	.approved-false * {
-		color:$primary-light
+	&.approved-false * {
+		color:$primary-light !important;
 	}
 }
 

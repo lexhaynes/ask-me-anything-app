@@ -139,7 +139,7 @@ export default class Admin extends React.Component {
 
         tabs = {[
           {
-            label: "Moderate Questions", 
+            label: "Moderate", 
             content: tabs.tab1.content
           },
           {

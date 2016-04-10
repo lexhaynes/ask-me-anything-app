@@ -75,12 +75,16 @@ p {
 
 /*================ Home ============*/
 /*Search*/
+/*not sure why have to !important these; styles getting overwritten somehow*/
 #searchField {
   float: left;
+  margin-right: 20px;
   color: #fff !important; }
   #searchField .fa-search {
     fill: #fff;
-    color: #fff; }
+    color: #fff !important; }
+  #searchField #searchText {
+    color: #fff !important; }
 
 /*Subject Proufle*/
 .subjectProfile {

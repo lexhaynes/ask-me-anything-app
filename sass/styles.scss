@@ -75,12 +75,17 @@ p {
 
 /*Search*/
 
+/*not sure why have to !important these; styles getting overwritten somehow*/
 #searchField {
 	float:left;
+	margin-right:20px;
 	color:#fff !important;
 	.fa-search {
 		fill:$inverted;
-		color:$inverted;
+		color:$inverted !important;
+	}
+	#searchText {
+		color:$inverted !important;
 	}
 
 }

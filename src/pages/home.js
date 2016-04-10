@@ -10,12 +10,12 @@ import constants from '../redux/constants'
 import PageTemplate from '../components/PageTemplate'
 import QuestionForm from '../components/QuestionForm'
 import SubjectProfile from '../components/SubjectProfile'
+import SearchBar from '../components/SearchBar'
 //MUI Components
 import Paper from 'material-ui/lib/paper' 
 import RaisedButton from 'material-ui/lib/raised-button' 
 import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import TextField from 'material-ui/lib/text-field' 
-import LeftNav from 'material-ui/lib/left-nav'
 import IconButton from 'material-ui/lib/icon-button'
 
 
@@ -57,8 +57,8 @@ export default class Home extends React.Component {
   render() {
     var _this = this;
     var approved = false;
-
-    var questions = this.props.questions.map(function(q, index) {
+    //we're iterating through an on-the-fly created copy of state
+    var questions = this.props.filtered.map(function(q, index) {
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
           var question = q.editingQuestion ?
               //editing question state
@@ -119,19 +119,12 @@ export default class Home extends React.Component {
       )
     })
 
-    const searchButton = 
-    <div>
-      <IconButton
-        iconClassName = "fa fa-search"
-      />
-      <TextField 
-        hintText="Search" />
-    </div>;
+    console.log('filtered', this.props.filtered)
 
     return (
 
       <PageTemplate 
-      elementRight = {searchButton}
+      elementRight = {<SearchBar />}
       elementRightClick = {this.toggleSearch}
       content = {
           <div>        
@@ -162,6 +155,15 @@ export default class Home extends React.Component {
 }
 
 export default connect(
-  state => ({ currentState: state, questions: state.questions }), 
+  state => ({ 
+    currentState: state, 
+    questions: state.questions, 
+    //here we create a filtered version of state on the fly instead of directly mutating state
+    filtered: state.questions.filter((q) => {
+        return q.title.toLowerCase().indexOf(state.searchTerm) > -1
+    }) 
+  }), 
   dispatch => ({ actions: bindActionCreators(actions, dispatch) })
 )(Home);
+
+

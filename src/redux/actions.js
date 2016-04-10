@@ -215,6 +215,13 @@ let actions = {
 		}
 	},
 
+	filterQuestions: function(query) {
+		return {
+			type: constants.FILTER_QUESTIONS,
+			query: query
+		}
+	}
+
 	
 
 

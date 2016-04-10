@@ -84,7 +84,13 @@ let reducer = function(state, action) {
 	            }) : q
 	        })
 	      })
-			    
+			 
+
+	case constants.FILTER_QUESTIONS: 
+		return Object.assign({}, state, {
+	        searchTerm: action.query	
+	    })
+	         
 		      
 
 		//do more to update state here... 

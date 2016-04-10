@@ -4,6 +4,7 @@ export default function() {
 	var now = new Date().toISOString();
 	return {
 		requestStatus: constants.REQUESTING,
+		searchTerm: '',
 		questions: [{
 				id: 0,
 				approvalStatus: constants.QUESTION_PENDING,

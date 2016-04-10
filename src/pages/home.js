@@ -61,35 +61,12 @@ export default class Home extends React.Component {
   }
 }
 
-getRandomImg() {
-  var categories =[
-    "abstract",
-    "animals",
-    "business",
-    "cats",
-    "city",
-    "food",
-    "nightlife",
-    "fashion",
-    "people",
-    "nature",
-    "sports",
-    "technics",
-    "transport"
-  ]
-   var max = categories.length, 
-       min = 0;
-
-  return categories[Math.floor(Math.random() * (max - min)) + min];
-}
-
 
   render() {
     var _this = this;
     var approved = false;
     //we're iterating through an on-the-fly created copy of state
     var questions = this.props.filtered.map(function(q, index) {
-      var randomImg = _this.getRandomImg();
       approved = "approved-" + String(q.approvalStatus === constants.QUESTION_APPROVED);
           var question = q.editingQuestion ?
               //editing question state
@@ -131,7 +108,7 @@ getRandomImg() {
     <CardHeader
       title={q.submitter}
       subtitle={q.submitTime}
-      avatar={"http://lorempixel.com/100/100/"+randomImg}
+      avatar={q.photo}
     />
     <CardTitle 
       style = {{paddingTop:0, paddingBottom:0}}
@@ -143,7 +120,7 @@ getRandomImg() {
           {q.answer || <div className="disabled">Not yet answered.</div>}
             <div className = "meta">
                 <i className = {classnames("clickable", "fa fa-star")} 
-                  onClick = {_this.props.actions.upvoteQuestion.bind(_this, index)}></i>
+                  onClick = {_this.props.actions.upvoteQuestion.bind(_this, q.id)}></i>
                 <span className = {"number"}>{q.upvotes}</span>
             </div>
     </CardText>

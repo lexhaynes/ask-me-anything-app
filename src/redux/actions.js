@@ -33,14 +33,14 @@ let actions = {
 			return axios.post(constants.API_QUESTIONS, {
 				title: title,
 				submitter: submitter,
-				approvalStatus: constants.QUESTION_PENDING
+				approvalStatus: constants.QUESTION_PENDING,
 			}).then(function(response) {
 				dispatch({
 					type: constants.SUBMIT_QUESTION,
 					title: title,
 					submitTime: submitTime,
 					submitter: submitter,
-					approvalStatus: constants.QUESTION_PENDING	
+					approvalStatus: constants.QUESTION_PENDING,
 				})
 			}).catch(function(error) {
 				console.log('error', error)
@@ -128,16 +128,16 @@ let actions = {
 		}
 	},
 
-	upvoteQuestion: function(index) {
+	upvoteQuestion: function(id) {
 		return {
 			type: constants.UPVOTE_QUESTION,
-			index: index
+			id: id
 		}
 	},
-	downvoteQuestion: function(index) {
+	downvoteQuestion: function(id) {
 		return {
 			type: constants.DOWNVOTE_QUESTION,
-			index: index
+			id: id
 		}
 	},
 

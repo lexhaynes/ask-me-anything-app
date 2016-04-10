@@ -14,7 +14,7 @@ let reducer = function(state, action) {
 						submitter: q.submitter,
 						upvotes: q.upvotes,
 						answer: q.answer,
-						photo: q.photo,
+						photo: getRandomImg(),
 						editingAnswer: q.editingAnswer,
 						approvalStatus: q.approvalStatus,
 						id: q._id
@@ -24,8 +24,8 @@ let reducer = function(state, action) {
 
 		case constants.UPVOTE_QUESTION: 
 			return Object.assign({}, state, {
-		        questions: state.questions.map((q, index) => {
-		          return index === action.index ? 
+		        questions: state.questions.map((q) => {
+		          return q.id === action.id ? 
 		            Object.assign({}, q, {
 		            	upvotes: q.upvotes+=1
 		            }) : q 
@@ -34,8 +34,8 @@ let reducer = function(state, action) {
 
 		case constants.DOWNVOTE_QUESTION: 
 			return Object.assign({}, state, {
-		        questions: state.questions.map((q, index) => {
-		          return index === action.index ? 
+		        questions: state.questions.map((q) => {
+		          return q.id === action.id ? 
 		            Object.assign({}, q, {
 		            	upvotes: q.upvotes === 0 ? q.upvotes = 0 : q.upvotes-=1
 		            }) : q
@@ -155,5 +155,15 @@ let reducer = function(state, action) {
 	      return state;
 	}
 }
+
+//temp random img generator
+function getRandomImg() {
+  var categories =[ "abstract","animals","business","cats","city","food","nightlife","fashion","people","nature","sports","technics","transport" ];
+  var max = categories.length, 
+      min = 0;
+
+  return "http://lorempixel.com/100/100/"+categories[Math.floor(Math.random() * (max - min)) + min];
+}
+
 
 export default reducer

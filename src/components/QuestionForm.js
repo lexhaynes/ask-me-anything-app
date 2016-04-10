@@ -76,6 +76,7 @@ export default class QuestionForm extends React.Component {
     }
   }
 
+ 
   handleClick() {
     //check that vals are not empty
       if (this.state.title.length < 1) {
@@ -93,10 +94,6 @@ export default class QuestionForm extends React.Component {
           errorUser: ''
         })   
       }
-
-      console.log(this.state.title)
-      console.log(this.state.submitter)
-
 
   if (this.state.title.length > 1 && this.state.submitter.length > 1 ) {
       this.props.actions.submitQuestion(

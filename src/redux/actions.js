@@ -1,7 +1,8 @@
 import axios from 'axios'
+import querystring from 'querystring'
 import constants from './constants'
 import initialState from './initialState'
-
+import config from '../../config'
 
 let actions = {
 	//async
@@ -12,7 +13,12 @@ let actions = {
 				requestStatus: constants.REQUESTING,
 				questions: initialState().questions
 			})
-			return axios.get(constants.API_QUESTIONS).then(function(response) {
+			return axios.get(constants.API_QUESTIONS,
+				  { headers: { 
+			        "Content-Type": "application/x-www-form-urlencoded",
+			        "X-Access-Token": config.token
+			      }
+			}).then(function(response) {
 				dispatch({
 					type: constants.DISPLAY_QUESTIONS,
 					requestStatus: constants.REQUEST_SUCCESS,
@@ -30,11 +36,16 @@ let actions = {
 	//async POST
 	submitQuestion: function(title, submitTime, submitter) {
 		return dispatch => {
-			return axios.post(constants.API_QUESTIONS, {
-				title: title,
-				submitter: submitter,
-				approvalStatus: constants.QUESTION_PENDING,
-			}).then(function(response) {
+			return axios.post(constants.API_QUESTIONS, 
+				querystring.stringify({ title: title,
+					submitter: submitter,
+					approvalStatus: constants.QUESTION_PENDING,
+				}),
+				{ headers: { 
+			        "Content-Type": "application/x-www-form-urlencoded",
+			        "X-Access-Token": config.token
+			     	}
+			     }).then(function(response) {
 				dispatch({
 					type: constants.SUBMIT_QUESTION,
 					title: title,

@@ -2,7 +2,7 @@ import axios from 'axios'
 import querystring from 'querystring'
 import constants from './constants'
 import initialState from './initialState'
-import config from 'auth-config/config'
+import config from 'auth-config'
 
 let actions = {
 	//async

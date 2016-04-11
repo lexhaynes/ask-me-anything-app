@@ -21,11 +21,20 @@ app.get('/app.js', (req, res) => {
 });
 
 // Serve aggregate stylesheet depending on environment
-app.get('/style.css', (req, res) => {
+app.get('/css/styles.css', (req, res) => {
   if (process.env.PRODUCTION) {
-    res.sendFile(__dirname + '/build/style.css');
+    res.sendFile(__dirname + '/build/css/styles.css');
   } else {
-    res.redirect('//localhost:9090/build/style.css');
+    res.redirect('//localhost:9090/build/css/styles.css');
+  }
+});
+
+// Serve aggregate stylesheet depending on environment
+app.get('/favicon.png', (req, res) => {
+  if (process.env.PRODUCTION) {
+    res.sendFile(__dirname + '/build/favicon.png');
+  } else {
+    res.redirect('//localhost:9090/build/favicon.png');
   }
 });
 

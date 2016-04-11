@@ -97,12 +97,9 @@ p {
 
 /*Subject Proufle*/
 
-.admin-content .subjectProfile {
-	width: 90%;
-}
 .subjectProfile {
 	@include mobile-container;
-	width:100%;
+	width:90%;
 	margin:50px auto;
 	@media (min-width:$desktop) {
 		width: 75%

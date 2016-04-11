@@ -43,15 +43,33 @@ export default class Admin extends React.Component {
   render() {
     var _this = this;
     var approved = "approval-pending";
+    var approvedButton;
     var questions = this.props.questions.map(function(q, index) {
     
       if (q.approvalStatus == "QUESTION_APPROVED") {
         approved = "approved";
+        //show disabled approved button if the question is already approved
+        approvedButton = <FlatButton 
+          className = "button"
+          disabled = {true}
+          label  = "Approved"
+          primary = {true}
+        />;
       } else if (q.approvalStatus == "QUESTION_REJECTED") {
         approved = "approval-rejected"
       } else {
         approved = "approval-pending";
+        //shop Approved button
+        approvedButton = <FlatButton 
+          className = "button"
+          labelStyle = {{color:"#51BB05"}}
+          onClick={_this.props.actions.approveQuestion.bind(_this, q.id)} 
+          label  = "Approve"
+          primary = {true}
+        />;
       }
+
+
 
   
       var answerLabel = _this.props.questions[index].answer === "" ? "Answer Question" : "Edit Answer";
@@ -98,13 +116,7 @@ export default class Admin extends React.Component {
               {answer} 
 
           <div>       
-            <FlatButton 
-              className = "button"
-              labelStyle = {{color:"#51BB05"}}
-              onClick={_this.props.actions.approveQuestion.bind(_this, q.id)} 
-              label  = "Approve"
-              primary = {true}
-            />
+          {approvedButton}
             <FlatButton 
               className = "button"
               labelStyle = {{color:"#E24714"}}

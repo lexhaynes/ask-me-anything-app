@@ -18,7 +18,6 @@ import RaisedButton from 'material-ui/lib/raised-button'
 import FloatingActionButton from 'material-ui/lib/floating-action-button'
 import TextField from 'material-ui/lib/text-field' 
 import IconButton from 'material-ui/lib/icon-button'
-//CARD
 //Card
 import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
@@ -38,6 +37,7 @@ export default class Home extends React.Component {
       questions: [""],
     }
     this.toggleQuestionForm = this.toggleQuestionForm.bind(this);
+ 
 
   }
   updateQuestion(index, e) {
@@ -61,6 +61,8 @@ export default class Home extends React.Component {
       })
   }
 }
+
+
 
 
   render() {
@@ -142,7 +144,6 @@ export default class Home extends React.Component {
 
       <PageTemplate 
       elementRight = {<SearchBar />}
-      elementRightClick = {this.toggleSearch}
       content = {
           <div>        
              <QuestionForm 

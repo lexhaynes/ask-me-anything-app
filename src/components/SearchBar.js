@@ -18,17 +18,31 @@ export default class SubjectProfile extends React.Component {
     super(props);
     this.state = {
       query: '',
+      display: "none"
      }
     this.updateQuery = this.updateQuery.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
 
   }
 
   updateQuery(e) {
     this.setState({
-      query: e.target.value
+      query: e.target.value,
     })  
     //filter questions
     this.props.actions.filterQuestions(e.target.value);
+  }
+
+  toggleSearch() {
+    if (this.state.display === "none") {
+      this.setState({
+      display: "inline-block",
+    })  
+    } else {
+      this.setState({
+        display: "none",
+      })  
+    }
   }
 
   render() {
@@ -37,6 +51,7 @@ export default class SubjectProfile extends React.Component {
       <div id = "searchField">
         <IconButton
           iconClassName = "fa fa-search"
+          onClick = {this.toggleSearch}
         />
         <TextField 
           id = "searchText"
@@ -44,6 +59,7 @@ export default class SubjectProfile extends React.Component {
           hintStyle = {{color:"#fff"}}
           value = {this.state.query}
           onChange = {this.updateQuery}
+          style = {{display: this.state.display}}
           />
       </div>
     

@@ -97,6 +97,9 @@ p {
 
 /*Subject Proufle*/
 
+.admin-content .subjectProfile {
+	width: 90%;
+}
 .subjectProfile {
 	@include mobile-container;
 	width:100%;

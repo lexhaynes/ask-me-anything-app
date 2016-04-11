@@ -42,8 +42,6 @@
   "dependencies": {
     "autoprefixer": "^6.0.2",
     "webpack": "^1.12.14",
-    "postcss-loader": "^0.6.0",
-    "postcss-nested": "^1.0.0",
     "axios": "^0.9.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.5.2",

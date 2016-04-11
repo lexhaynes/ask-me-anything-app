@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * This is the Webpack configuration file for production.
@@ -12,10 +11,6 @@ module.exports = {
     filename: "app.js"
   },
 
-  plugins: [
-   // new ExtractTextPlugin('style.css', { allChunks: true })
-  ],
-
   module: {
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
@@ -24,11 +19,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css']
-  },
-
-  postcss: [
-    require('autoprefixer'),
-    require('postcss-nested')
-  ]
+    extensions: ['', '.js', '.jsx']
+  }
 }

@@ -22,10 +22,10 @@ let constants = {
 	SUBMIT_PROFILE: "SUBMIT_PROFILE",
 	DISPLAY_PROFILE: "DISPLAY_PROFILE",
 	//API
-	API_QUESTIONS: "http://localhost:3030/api/questions/",
-	API_QUESTION: "http://localhost:3030/api/question/",
-	API_PROFILES: "http://localhost:3030/api/profiles/",
-	API_PROFILE: "http://localhost:3030/api/profile/",
+	API_QUESTIONS: "https://ask-me-anything-api.herokuapp.com/api/questions/",
+	API_QUESTION: "https://ask-me-anything-api.herokuapp.com/api/question/",
+	API_PROFILES: "https://ask-me-anything-api.herokuapp.com/api/profiles/",
+	API_PROFILE: "https://ask-me-anything-api.herokuapp.com/api/profile/",
 	REQUESTING: "REQUESTING",
 	REQUEST_SUCCESS: "REQUEST_SUCCESS",
 	REQUEST_ERROR: "REQUEST_ERROR"

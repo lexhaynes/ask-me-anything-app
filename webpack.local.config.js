@@ -33,7 +33,7 @@ module.exports = {
   // Necessary plugins for hot load
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
 
   // Transform source code using Babel and React Hot Loader
@@ -47,4 +47,5 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   }
+
 }

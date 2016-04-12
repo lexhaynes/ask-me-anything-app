@@ -99,7 +99,7 @@ p {
 
 .subjectProfile {
 	@include mobile-container;
-	width:100%;
+	width:90%;
 	margin:50px auto;
 	@media (min-width:$desktop) {
 		width: 75%

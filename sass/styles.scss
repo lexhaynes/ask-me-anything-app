@@ -118,6 +118,7 @@ p {
     @media (min-width:$desktop) {
     	width:46%;
     	margin: 16px;
+    	vertical-align: top
 	}
 	&.approved-false * {
 		color:$primary-light !important;
@@ -129,9 +130,11 @@ p {
 
 h4.title {
 	font-weight:500;
-	margin:0;
+	margin:0 0 20px 0;
 	line-height:1.5em;
 	min-height:50px;
+	font-size:18px;
+
 }
 
 .meta {

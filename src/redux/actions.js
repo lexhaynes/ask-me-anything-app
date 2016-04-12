@@ -36,6 +36,13 @@ let actions = {
 	//async POST
 	submitQuestion: function(title, submitTime, submitter) {
 		return dispatch => {
+			dispatch({
+					type: constants.SUBMIT_QUESTION,
+					title: title,
+					submitTime: submitTime,
+					submitter: submitter,
+					approvalStatus: constants.QUESTION_PENDING,
+				})
 			return axios.post(constants.API_QUESTIONS, 
 				querystring.stringify({ 
 					title: title,
@@ -67,6 +74,10 @@ let actions = {
 	//async
 	deleteQuestion: function(id) {
 		return dispatch => {
+			dispatch({
+				type:constants.DELETE_QUESTION,
+				id: id
+			})
 			return axios.delete(constants.API_QUESTION + id , { 
 				headers: { 
 			        "Content-Type": "application/x-www-form-urlencoded",
@@ -172,6 +183,12 @@ let actions = {
 	//async PUT
 	approveQuestion: function(id) {
 		return dispatch => {
+			dispatch({
+				type: constants.APPROVE_QUESTION,
+				id:id,
+				approvalStatus: constants.QUESTION_APPROVED
+
+			})
 			return axios.put(constants.API_QUESTION + id , querystring.stringify({
 				key: "approvalStatus",
 				value: constants.QUESTION_APPROVED

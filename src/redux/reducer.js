@@ -44,7 +44,7 @@ let reducer = function(state, action) {
 
 		case constants.SUBMIT_QUESTION: 
   			return Object.assign({}, state, {
-		        questions: [...state.questions, {
+		        questions: [{
 		        	title: action.title,
 					submitTime: action.submitTime,
 					submitter: action.submitter,
@@ -53,7 +53,7 @@ let reducer = function(state, action) {
 					editingAnswer: state.editingAnswer,
 					approvalStatus: action.approvalStatus,
 					index: state.questions.length - 1 //assume for now index is index.
-		        }]
+		        }, ...state.questions]
 			 })
 
   		case constants.DELETE_QUESTION: 

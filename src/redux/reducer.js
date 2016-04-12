@@ -162,7 +162,7 @@ function getRandomImg() {
   var max = categories.length, 
       min = 0;
 
-  return "http://lorempixel.com/100/100/"+categories[Math.floor(Math.random() * (max - min)) + min];
+  return "https://lorempixel.com/100/100/"+categories[Math.floor(Math.random() * (max - min)) + min];
 }
 
 

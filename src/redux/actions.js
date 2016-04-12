@@ -76,8 +76,7 @@ let actions = {
 			        "Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			     }
-			 	}
-			}).then(function() {
+			 	}).then(function() {
 	
 				//query the db again to make sure page live updates
 				axios.get(constants.API_QUESTIONS, { 

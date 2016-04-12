@@ -36,13 +36,6 @@ let actions = {
 	//async POST
 	submitQuestion: function(title, submitTime, submitter) {
 		return dispatch => {
-			dispatch({
-					type: constants.SUBMIT_QUESTION,
-					title: title,
-					submitTime: submitTime,
-					submitter: submitter,
-					approvalStatus: constants.QUESTION_PENDING,
-				})
 			return axios.post(constants.API_QUESTIONS, 
 				querystring.stringify({ 
 					title: title,
@@ -83,10 +76,7 @@ let actions = {
 			        "Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			     }
-			 	},
-			     {
-					type:constants.DELETE_QUESTION,
-					id: id
+			 	}
 			}).then(function() {
 	
 				//query the db again to make sure page live updates
@@ -101,11 +91,6 @@ let actions = {
 						requestStatus: constants.REQUEST_SUCCESS,
 						questions: response.data	
 					})
-				})
-			}).then(function(response) {
-				dispatch({
-					type:constants.DELETE_QUESTION,
-					id: id
 				})
 			}).catch(function(error) {
 				console.log('error', error)
@@ -123,7 +108,8 @@ let actions = {
 			dispatch({
 				type: constants.UPDATE_QUESTION,
 				title: title,
-				editingQuestion: false
+				editingQuestion: false,
+				id:id
 				
 			})
 			return axios.put(constants.API_QUESTION + id , querystring.stringify({
@@ -134,14 +120,7 @@ let actions = {
 			        "Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			     }
-			 	}).then(function(response) {
-				dispatch({
-					type: constants.UPDATE_QUESTION,
-					id:id,
-					title: title,
-					editingQuestion: false
-				})
-			}).catch(function(error) {
+			 	}).catch(function(error) {
 				console.log('error', error)
         		 dispatch({
 	     		 	type: constants.REQUEST_ERROR,
@@ -196,15 +175,7 @@ let actions = {
 			        "Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			     }
-			 	}).then(function(response) {
-				console.log('response: ', response)
-				dispatch({
-					type: constants.APPROVE_QUESTION,
-					id:id,
-					approvalStatus: constants.QUESTION_APPROVED
-
-				})
-			}).catch(function(error) {
+			 	}).catch(function(error) {
 				console.log('error', error)
         		 dispatch({
 	     		 	type: constants.REQUEST_ERROR,
@@ -218,20 +189,15 @@ let actions = {
 		return dispatch => {
 			dispatch({
 				type: constants.REJECT_QUESTION,
-				approvalStatus: constants.QUESTION_REJECTED
+				approvalStatus: constants.QUESTION_REJECTED,
+				id:id,
 			})
 			return axios.delete(constants.API_QUESTION + id, { 
 				headers: { 
 					"Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			     }
-			 	}).then(function(response) {
-				dispatch({
-					type: constants.REJECT_QUESTION,
-					id:id,
-					approvalStatus: constants.QUESTION_REJECTED
-				})
-			}).catch(function(error) {
+			 	}).catch(function(error) {
 				console.log('error', error)
         		 dispatch({
 	     		 	type: constants.REQUEST_ERROR,
@@ -248,7 +214,8 @@ let actions = {
 			dispatch({
 				type: constants.SUBMIT_ANSWER,
 				answer: answer,
-				editingAnswer: false
+				editingAnswer: false,
+				id:id,
 				
 			})
 			return axios.put(constants.API_QUESTION + id , querystring.stringify({
@@ -259,14 +226,7 @@ let actions = {
 					"Content-Type": "application/x-www-form-urlencoded",
 			       	"X-Access-Token": config.token
 			      }
-			     }).then(function(response) {
-				dispatch({
-					type: constants.SUBMIT_ANSWER,
-					id:id,
-					answer: answer,
-					editingAnswer: false
-				})
-			}).catch(function(error) {
+			     }).catch(function(error) {
 				console.log('error', error)
         		 dispatch({
 	     		 	type: constants.REQUEST_ERROR,

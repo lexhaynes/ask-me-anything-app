@@ -119,7 +119,7 @@ export default class Home extends React.Component {
       title={question}
     />
     <CardText
-      style = {{paddingTop:0, paddingBottom:0}}
+      style = {{paddingTop:0, paddingBottom:0, lineHeight:"24px"}}
     >     
           {q.answer || <div className="disabled">Not yet answered.</div>}
             <div className = "meta">

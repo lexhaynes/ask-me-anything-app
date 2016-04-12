@@ -22,7 +22,7 @@ app.get('/app.js', (req, res) => {
 });
 
 // Serve aggregate stylesheet depending on environment
-app.get('/style.css', (req, res) => {
+app.get('/css/styles.css', (req, res) => {
   if (process.env.NODE_ENV === "production") {
     res.sendFile(__dirname + '/build/css/styles.css');
   } else {

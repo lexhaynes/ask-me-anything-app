@@ -14,7 +14,7 @@ const app = express();
 // Serve application file depending on environment
 console.log('node env', process.env.NODE_ENV)
 app.get('/app.js', (req, res) => {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.PRODUCTION) {
     res.sendFile(__dirname + '/build/app.js');
   } else {
     res.redirect('//localhost:9090/build/app.js');
@@ -23,7 +23,7 @@ app.get('/app.js', (req, res) => {
 
 // Serve aggregate stylesheet depending on environment
 app.get('/css/styles.css', (req, res) => {
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.PRODUCTION) {
     res.sendFile(__dirname + '/build/css/styles.css');
   } else {
     res.redirect('//localhost:9090/build/css/styles.css');
@@ -52,7 +52,7 @@ app.get('*', (req, res) => {
  *
  *************************************************************/
 
-if (process.env.NODE_ENV !== "production") {
+if (!process.env.PRODUCTION) {
   const webpack = require('webpack');
   const WebpackDevServer = require('webpack-dev-server');
   const config = require('./webpack.local.config');

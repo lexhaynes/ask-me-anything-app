@@ -53,8 +53,8 @@ const PageTemplate = React.createClass({
             primaryText = "Admin Login"
             onTouchTap = {this.adminLogin} 
           />
-          <MenuItem primaryText = "Create Account" />
-          <MenuItem primaryText = "Settings" />
+        {/*}  <MenuItem primaryText = "Create Account" />
+          <MenuItem primaryText = "Settings" />*/}
       </IconMenu>;
 
     return (        

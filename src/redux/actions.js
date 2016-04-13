@@ -10,7 +10,7 @@ let actions = {
 		return {
 		type: constants.DISPLAY_QUESTIONS,
 		requestStatus: constants.REQUESTING,
-		questions: initialState().questions
+		
 		}
 			
 	},

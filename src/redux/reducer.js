@@ -66,6 +66,7 @@ let reducer = function(state, action) {
 		case constants.UPDATE_QUESTION: 
 			return Object.assign({}, state, {
 		        questions: state.questions.map((q) => {
+		        	console.log('id', q.id)
 		          return q.id === action.id ? 
 		            Object.assign({}, q, {
 		            title: action.title,

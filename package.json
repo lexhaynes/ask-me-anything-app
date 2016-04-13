@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "server": "node start.js",
-    "start": "node start.js",
+    "serverDev": "node start-dev.js",
     "build": "webpack -p --config webpack.production.config.js",
     "test": "nyc ava --fail-fast --verbose --require babel-register",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",

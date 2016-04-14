@@ -1,0 +1,216 @@
+@import 'vars';
+@import 'helpers';
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    padding:0 0 100px 0;
+	margin:0;
+	font-family:$font;
+}
+
+
+/*================ Helpers ============*/
+.clickable {
+	cursor:pointer;
+}
+
+
+
+/*================ Layout ============*/
+
+
+.full {
+	min-width:100%;
+}
+
+.section {
+
+}
+
+
+/*================ Typography ============*/
+
+h1, h2, h3, h4, h5, h6, div, p, span, button {
+	font-family: $font;
+}
+
+h1, h2 {
+	font-weight:500;
+}
+
+
+p {
+	font-size: 0.85em;
+    line-height: 2em;
+}
+
+.fa {
+	font-size:20px;
+}
+
+/*================ Common ============*/
+
+.container {
+	@include mobile-container;
+	@media (min-width:$desktop) {
+		width: $desktop;
+		margin:0 auto;
+	}
+
+}
+
+.paper {
+	display: inline-block;
+    padding:16px 32px 32px 32px;
+    width: 100%;
+    margin: 16px auto;
+}
+
+.disabled {
+	color:$primary-light;
+}
+
+
+/*================ Home ============*/
+
+/*Search*/
+
+/*not sure why have to !important these; styles getting overwritten somehow*/
+#searchField {
+	float:left;
+	margin-right:20px;
+	color:#fff !important;
+	.fa-search {
+		fill:$inverted;
+		color:$inverted !important;
+	}
+	#searchText {
+		color:$inverted !important;
+	}
+
+}
+
+
+/*Subject Proufle*/
+
+.subjectProfile {
+	@include mobile-container;
+	width:90%;
+	margin:50px auto;
+	@media (min-width:$desktop) {
+		width: 75%
+	}
+}
+
+/*Questions Container*/
+
+.questionsContainer {
+	margin: 0 auto 80px auto;
+}
+
+
+/* Question Box */
+.questionBox {
+    @media (min-width:$desktop) {
+    	width:46%;
+    	margin: 16px;
+    	vertical-align: top
+	}
+	&.approved-false * {
+		color:$primary-light !important;
+	}
+	&.approved-false img {
+		opacity:.5;
+	}
+}
+
+h4.title {
+	font-weight:500;
+	margin:0 0 20px 0;
+	line-height:1.5em;
+	min-height:50px;
+	font-size:18px;
+
+}
+
+.meta {
+	margin:14px 0;
+}
+
+.submitter {
+	color:$primary-light;
+	font-weight:300;
+}
+
+.fa-star {
+	@include transition(.05s, color, linear);
+	color:$primary-light;
+	font-size:16px;
+	&:hover {
+		color:#F8E71C
+	}
+}
+
+.number {
+	color:$primary-light;
+	padding:0 8px;
+	font-size:16px;
+}
+
+.options {
+	.fa {
+		padding-right:10px;
+	}
+}
+
+
+/* Question Form Icons */
+.questionForm {
+      .fa {
+    	padding-right:20px;
+    	color:$primary-light;
+    }
+}
+
+
+
+
+/*================ Admin ============*/
+.admin-content {
+	overflow-x:hidden;
+}
+.admin {
+	.button {
+		margin:10px 16px 10px 0;
+	}
+	.upvotes {
+		margin:10px 0;
+	}
+	.number {
+		padding:0
+	}
+	&.questionsContainer {
+		margin:50px auto;
+		width:90%;
+	}
+	&.profile {
+		margin:50px auto;
+		width:90%;
+	}
+ }	
+
+.approved {
+}
+
+
+.approval-rejected {
+  visibility:hidden;
+  position: absolute;
+  opacity: 0;
+  transition: position 0s, visibility 0s, opacity 0.75s, ease-in-out;
+}
+

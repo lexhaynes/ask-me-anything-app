@@ -1,0 +1,37 @@
+
+.table {
+	display:table;
+}
+.center {
+	margin: 0 auto;
+}
+.center-text {
+	text-align:center;
+}
+
+.no-height {height:1px;}
+
+.no-padding {padding:0 !important;}
+
+.fixed-right {
+	position:fixed;
+	bottom: 50px;
+    right: 50px;
+}
+
+.left {float:left}
+.right {float:right}
+.clear {clear:both}
+
+@mixin mobile-container {
+	width: $mobile-container-width;
+	margin:0 auto;
+}
+
+@mixin transition($speed, $attribute, $easing:"") {
+	-o-transition: $speed unquote($easing) $attribute;
+    -ms-transition: $speed unquote($easing) $attribute;
+    -moz-transition: $speed unquote($easing) $attribute;
+    -webkit-transition: $speed unquote($easing) $attribute;
+    transition: $speed unquote($easing) $attribute;
+}

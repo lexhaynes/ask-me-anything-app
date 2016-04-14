@@ -1,0 +1,15 @@
+{
+  "name": "AMA App",
+  "description": "Reddit AMA-style Q&A App",
+  "keywords": [
+    "react",
+    "babel",
+    "starter"
+  ],
+  "repository": "https://github.com/lexhaynes/ama-app",
+  "logo": "https://placehold.it/50x50",
+  "env": {
+    "PRODUCTION": "true",
+    "NPM_CONFIG_PRODUCTION": "false"
+  }
+}

@@ -1,0 +1,182 @@
+.table {
+  display: table; }
+
+.center {
+  margin: 0 auto; }
+
+.center-text {
+  text-align: center; }
+
+.no-height {
+  height: 1px; }
+
+.no-padding {
+  padding: 0 !important; }
+
+.fixed-right {
+  position: fixed;
+  bottom: 50px;
+  right: 50px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.clear {
+  clear: both; }
+
+html {
+  position: relative;
+  min-height: 100%; }
+
+body {
+  padding: 0 0 100px 0;
+  margin: 0;
+  font-family: "Raleway", "sans-serif"; }
+
+/*================ Helpers ============*/
+.clickable {
+  cursor: pointer; }
+
+/*================ Layout ============*/
+.full {
+  min-width: 100%; }
+
+/*================ Typography ============*/
+h1, h2, h3, h4, h5, h6, div, p, span, button {
+  font-family: "Raleway", "sans-serif"; }
+
+h1, h2 {
+  font-weight: 500; }
+
+p {
+  font-size: 0.85em;
+  line-height: 2em; }
+
+.fa {
+  font-size: 20px; }
+
+/*================ Common ============*/
+.container {
+  width: 96%;
+  margin: 0 auto; }
+  @media (min-width: 1000px) {
+    .container {
+      width: 1000px;
+      margin: 0 auto; } }
+
+.paper {
+  display: inline-block;
+  padding: 16px 32px 32px 32px;
+  width: 100%;
+  margin: 16px auto; }
+
+.disabled {
+  color: #ccc; }
+
+/*================ Home ============*/
+/*Search*/
+/*not sure why have to !important these; styles getting overwritten somehow*/
+#searchField {
+  float: left;
+  margin-right: 20px;
+  color: #fff !important; }
+  #searchField .fa-search {
+    fill: #fff;
+    color: #fff !important; }
+  #searchField #searchText {
+    color: #fff !important; }
+
+/*Subject Proufle*/
+.subjectProfile {
+  width: 96%;
+  margin: 0 auto;
+  width: 90%;
+  margin: 50px auto; }
+  @media (min-width: 1000px) {
+    .subjectProfile {
+      width: 75%; } }
+
+/*Questions Container*/
+.questionsContainer {
+  margin: 0 auto 80px auto; }
+
+/* Question Box */
+@media (min-width: 1000px) {
+  .questionBox {
+    width: 46%;
+    margin: 16px;
+    vertical-align: top; } }
+
+.questionBox.approved-false * {
+  color: #ccc !important; }
+
+.questionBox.approved-false img {
+  opacity: .5; }
+
+h4.title {
+  font-weight: 500;
+  margin: 0 0 20px 0;
+  line-height: 1.5em;
+  min-height: 50px;
+  font-size: 18px; }
+
+.meta {
+  margin: 14px 0; }
+
+.submitter {
+  color: #ccc;
+  font-weight: 300; }
+
+.fa-star {
+  -o-transition: 0.05s linear color;
+  -ms-transition: 0.05s linear color;
+  -moz-transition: 0.05s linear color;
+  -webkit-transition: 0.05s linear color;
+  transition: 0.05s linear color;
+  color: #ccc;
+  font-size: 16px; }
+  .fa-star:hover {
+    color: #F8E71C; }
+
+.number {
+  color: #ccc;
+  padding: 0 8px;
+  font-size: 16px; }
+
+.options .fa {
+  padding-right: 10px; }
+
+/* Question Form Icons */
+.questionForm .fa {
+  padding-right: 20px;
+  color: #ccc; }
+
+/*================ Admin ============*/
+.admin-content {
+  overflow-x: hidden; }
+
+.admin .button {
+  margin: 10px 16px 10px 0; }
+
+.admin .upvotes {
+  margin: 10px 0; }
+
+.admin .number {
+  padding: 0; }
+
+.admin.questionsContainer {
+  margin: 50px auto;
+  width: 90%; }
+
+.admin.profile {
+  margin: 50px auto;
+  width: 90%; }
+
+.approval-rejected {
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  transition: position 0s, visibility 0s, opacity 0.75s, ease-in-out; }

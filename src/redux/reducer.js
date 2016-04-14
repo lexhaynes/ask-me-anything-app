@@ -7,17 +7,17 @@ let reducer = function(state, action) {
 		case constants.DISPLAY_QUESTIONS:
 			return Object.assign({}, state, {
 				requestStatus: action.requestStatus,
-				questions: action.questions.map((q) => {
+				questions: state.questions.map((q) => {
 					return {
 			        	title: q.title,
-						submitTime: q.submitTime || q.created_at,
+						submitTime: q.submitTime ,
 						submitter: q.submitter,
 						upvotes: q.upvotes,
 						answer: q.answer,
 						photo: getRandomImg(),
 						editingAnswer: q.editingAnswer,
 						approvalStatus: q.approvalStatus,
-						id: q._id
+						id: q.id
 				}
 			}) 
 		})

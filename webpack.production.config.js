@@ -8,7 +8,7 @@ module.exports = {
    // Efficiently evaluate modules with source maps
   devtool: "eval", 
   
-  entry: "./src/main",
+  entry: "./src/main.js",
 
   output: {
     path: __dirname + "/build/",

@@ -11,7 +11,8 @@
     "build": "webpack -p --config webpack.production.config.js",
     "test": "nyc ava --fail-fast --verbose --require babel-register",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "clean": "rm build/app.js"
+    "clean": "rm build/app.js",
+    "main": "npm run server"
   },
   "repository": {
     "type": "git",

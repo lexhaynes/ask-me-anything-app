@@ -5,8 +5,7 @@ var webpack = require('webpack');
  */
 module.exports = {
 
-   // Efficiently evaluate modules with source maps
-  devtool: "eval", 
+   devtool: 'inline-source-map', 
   
   entry: "./src/main.js",
 
@@ -17,7 +16,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" }
+      { test: /\.jsx?$/, loader: "babel-loader" }
     ]
   },
 

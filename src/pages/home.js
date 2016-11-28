@@ -28,7 +28,7 @@ import CardText from 'material-ui/lib/card/card-text';
 
 
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     props.actions.displayQuestions();

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import App from './App'
-import Home from '/src/components/pages/home'
+import Home from '../pages/home'
 import Admin from '../pages/admin'
 
 export default (

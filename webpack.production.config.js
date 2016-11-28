@@ -4,6 +4,10 @@ var webpack = require('webpack');
  * This is the Webpack configuration file for production.
  */
 module.exports = {
+
+   // Efficiently evaluate modules with source maps
+  devtool: "eval", 
+  
   entry: "./src/main",
 
   output: {

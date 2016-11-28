@@ -15,7 +15,7 @@ import initialState from './redux/initialState'
 //for material-ui
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-console.log('main.js');
+console.log('main');
 
 
 
